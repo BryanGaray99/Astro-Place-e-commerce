@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+import Layout from '../../Components/Layout';
 
-function MyOrder() {
+function MyOrders() {
   return (
-    <div></div>
-  )
+    <Layout>
+      <div>MyOrders</div>
+    </Layout>
+  );
 }
 
-export default MyOrder
+export default MyOrders

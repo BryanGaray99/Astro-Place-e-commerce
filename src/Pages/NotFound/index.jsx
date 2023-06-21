@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+import Layout from '../../Components/Layout';
 
 function NotFound() {
   return (
-    <div></div>
-  )
+    <Layout>
+      <div>NotFound</div>
+    </Layout>
+  );
 }
 
 export default NotFound

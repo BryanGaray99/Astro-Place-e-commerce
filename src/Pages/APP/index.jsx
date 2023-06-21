@@ -9,7 +9,7 @@ import Navbar from '../../Components/Navbar'
 import './App.css';
 
 const AppRoutes = () => {
-  let router = useRoutes([
+  let routes = useRoutes([
     { path: '/', element: <Home /> },
     { path: '/my-account', element: <MyAccount /> },
     { path: '/my-order', element: <MyOrder /> },
@@ -18,7 +18,7 @@ const AppRoutes = () => {
     { path: '/*', element: <NotFound /> }
   ]);
 
-  return router;
+  return routes;
 }
 
 const App = () => {

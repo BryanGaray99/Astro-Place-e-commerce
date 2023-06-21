@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+import Layout from '../../Components/Layout';
 
 function MyAccount() {
   return (
-    <div></div>
-  )
+    <Layout>
+      <div>MyAccount</div>
+    </Layout>
+  );
 }
 
 export default MyAccount

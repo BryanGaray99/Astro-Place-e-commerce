@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+import Layout from '../../Components/Layout';
 
 function SignIn() {
   return (
-    <div></div>
-  )
+    <Layout>
+      <div>SignIn</div>
+    </Layout>
+  );
 }
 
 export default SignIn

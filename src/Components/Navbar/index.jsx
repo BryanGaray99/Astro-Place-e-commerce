@@ -1,14 +1,19 @@
 import { NavLink } from 'react-router-dom'
-
+import logoBlack from '../../Assets/astro-place-black.png'
 const Navbar = () => {
 
-    const activeStyle = 'underline underline-offset-4' 
+    const activeStyle = 'underline underline-offset-4';
+    
     return (
-        <nav className='flex justify-between items-center fixed z-10 w-full py-5 px-8 text-sm font-light'>
+        <nav className='flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm bg-white'>
             <ul className='flex items-center gap-3'>
-                <li className='font-semibold text-lg flex-grow'>
+                <li className='font-semibold text-lg'>
                     <NavLink to='/'>
-                        AstroPlace
+                        <img 
+                            src={logoBlack}
+                            className='h-15 w-14'
+                        >            
+                        </img>
                     </NavLink>
                 </li>
                 <li>
@@ -58,7 +63,7 @@ const Navbar = () => {
                             isActive ? activeStyle : undefined
                         }
                     >
-                        Accesories
+                        Accessories
                     </NavLink>
                 </li>
             </ul>
