@@ -4,12 +4,12 @@ import { XMarkIcon } from '@heroicons/react/24/solid';
 
 
 function ProductDetail () {
-    const { setOpenModal, productShow } = useContext(ShoppingCartContext);
+    const { setOpenProductDetail, productShow } = useContext(ShoppingCartContext);
 
-    const onCancel = () => { setOpenModal(false) };
+    const onCancel = () => { setOpenProductDetail(false) };
 
     return (
-        <div className='flex flex-col fixed bg-white rounded-lg w-[400px] h-[calc(100vh-140px)] overflow-hidden shadow-lg hover:shadow-xl 
+        <div className='flex flex-col fixed bg-white rounded-lg w-[400px] h-[calc(100vh-130px)] overflow-hidden shadow-lg hover:shadow-xl 
                     hover:scale-105 duration-500 transform transition'>
             <figure className='relative mb-2 w-full h-3/5'>
                 <div 

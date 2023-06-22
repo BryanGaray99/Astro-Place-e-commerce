@@ -7,7 +7,7 @@ import ProductDetail from '../../Components/ProductDetail';
 import ProductModal from '../../Components/ProductModal';
 
 function Home() {
-  const { openModal } = useContext(ShoppingCartContext);
+  const { openProductDetail } = useContext(ShoppingCartContext);
   const [items, setItems] = useState(null);
   
 
@@ -33,7 +33,7 @@ function Home() {
           ))
         }
       </div>
-      {openModal && (
+      {openProductDetail && (
         <ProductModal>
             <ProductDetail />
         </ProductModal>
