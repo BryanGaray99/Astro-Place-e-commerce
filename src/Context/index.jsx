@@ -4,7 +4,6 @@ export const ShoppingCartContext = createContext();
 
 export const ShoppingCartProvider = ({children}) => {
     // Shopping Cart
-    const [count, setCount] = useState(0);
     const [cartProducts, setCartProducts] = useState([]);
 
     // Product Detail
@@ -19,8 +18,6 @@ export const ShoppingCartProvider = ({children}) => {
     return (
         <ShoppingCartContext.Provider
             value ={{
-                count,
-                setCount,
                 openProductDetail,
                 setOpenProductDetail,
                 productShow,
