@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import { ShoppingCartContext } from '../../Context'
 import { NavLink } from 'react-router-dom'
+import { ShoppingBagIcon } from '@heroicons/react/24/solid';
 import logoBlack from '../../Assets/astro-place-black.png'
 
 const Navbar = () => {
@@ -10,7 +11,7 @@ const Navbar = () => {
     return (
         <nav className='flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm bg-white'>
             <ul className='flex items-center gap-3'>
-                <li className='font-semibold text-lg'>
+                <li className='font-semibold text-lg items-center'>
                     <NavLink to='/'>
                         <img 
                             src={logoBlack}
@@ -104,15 +105,9 @@ const Navbar = () => {
                         SignIn
                     </NavLink>
                 </li>
-                <li>
-                    <NavLink 
-                        to='/cart'
-                        className={({ isActive }) => 
-                            isActive ? activeStyle : undefined
-                        }
-                    >
-                        🛍 {count}
-                    </NavLink>
+                <li className='flex items-center'>
+                    <ShoppingBagIcon className='h-6 w-6 text-blue-500	'></ShoppingBagIcon> 
+                    <div> {count} </div>
                 </li>
             </ul>
         </nav>
