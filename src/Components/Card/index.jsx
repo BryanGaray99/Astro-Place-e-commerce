@@ -22,20 +22,23 @@ const Card = (data) => {
     event.stopPropagation();
     openCheckoutMenu();
 
-    // true si el producto ya se encuentra en el carrito
-    const productExists = cartProducts.some(cartItem => cartItem.id === productData.id); 
-
-    if (productExists) {
-        // valida la existencia y busca el producto
-        const productCart = cartProducts.find(cartItem => cartItem.id === productData.id);
-        productCart.quantity += 1; 
-    } else {
-        // si el producto no está, le agrega la propiedad quantity con valor uno, y luego setea el carrito agregando ese producto
-        productData.quantity = 1; 
-        // Usamos el spread operator para traer lo que ya había en el array y sumarle el nuevo ítem, osea productCart
-        setCartProducts([...cartProducts, productData]);
-    }
+    setCartProducts([...cartProducts, productData]);
     setCount(count + 1);
+
+    // // true si el producto ya se encuentra en el carrito
+    // const productExists = cartProducts.some(cartItem => cartItem.id === productData.id); 
+
+    // if (productExists) {
+    //     // valida la existencia y busca el producto
+    //     const productCart = cartProducts.find(cartItem => cartItem.id === productData.id);
+    //     productCart.quantity += 1; 
+    // } else {
+    //     // si el producto no está, le agrega la propiedad quantity con valor uno, y luego setea el carrito agregando ese producto
+    //     productData.quantity = 1; 
+    //     // Usamos el spread operator para traer lo que ya había en el array y sumarle el nuevo ítem, osea productCart
+    //     setCartProducts([...cartProducts, productData]);
+    // }
+    // setCount(count + 1);
   };
   
 

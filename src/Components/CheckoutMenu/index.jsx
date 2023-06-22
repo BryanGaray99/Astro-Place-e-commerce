@@ -9,7 +9,7 @@ const CheckoutMenu = () => {
 
   return (
     <aside
-      className={`${isCheckoutMenu ? 'flex' : 'hidden'} checkout-detail flex-col fixed right-0  bg-[#f7f3ff]`}>
+      className={`${isCheckoutMenu ? 'flex' : 'hidden'} checkout-detail scrollable-cards flex-col fixed right-0  bg-[#f7f3ff]`}>
       <div className='flex justify-between items-center p-6'>
         <h2 className='font-medium text-xl'>My Order</h2>
         <div>
@@ -26,7 +26,7 @@ const CheckoutMenu = () => {
               title={product.title}
               imageUrl={product.images}
               price={product.price}
-              quantity={product.quantity}
+            //   quantity={product.quantity}
             />
           ))
         }
