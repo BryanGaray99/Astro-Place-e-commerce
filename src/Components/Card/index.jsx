@@ -16,22 +16,10 @@ const Card = (data) => {
   };
   
   const addProductsToCart = (event, productData) => {
-    // Escuchamos solo un evento, el de añadir
-    event.stopPropagation();
-    // true si el producto ya se encuentra en el carrito
-    const productExists = cartProducts.some(cartItem => cartItem.id === productData.id); 
-
-    if (productExists) {
-        // valida la existencia y busca el producto
-        const productCart = cartProducts.find(cartItem => cartItem.id === productData.id);
-        productCart.quantity += 1; 
-    } else {
-        // si el producto no está, le agrega la propiedad quantity con valor uno, y luego setea el carrito agregando ese producto
-        productData.quantity = 1; 
-        // Usamos el spread operator para traer lo que ya había en el array y sumarle el nuevo ítem, osea productCart
-        setCartProducts([...cartProducts, productData]);
-    }
-  };
+    event.stopPropagation(); // Escuchar solo un evento
+    productData.quantity = 1; 
+    setCartProducts([...cartProducts, productData]);
+  }
 
   const handleDelete = (event, id) => {
     event.stopPropagation();

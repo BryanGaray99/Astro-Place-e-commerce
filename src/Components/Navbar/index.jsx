@@ -1,8 +1,8 @@
-import { useContext } from 'react'
-import { ShoppingCartContext } from '../../Context'
-import { NavLink } from 'react-router-dom'
+import { useContext } from 'react';
+import { ShoppingCartContext } from '../../Context';
+import { NavLink } from 'react-router-dom';
 import { ShoppingBagIcon } from '@heroicons/react/24/solid';
-import logoBlack from '../../Assets/astro-place-black.png'
+import logoBlack from '../../Assets/astro-place-black.png';
 
 const Navbar = () => {
     const { cartProducts, setOpenCartMenu } = useContext(ShoppingCartContext);
