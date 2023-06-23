@@ -13,6 +13,22 @@ const CheckoutMenu = () => {
     setCartProducts(deletedProduct);
   }
 
+  const increaseQuantity = (id, quantity) => {
+    const productCart = cartProducts.find(cartItem => cartItem.id === id);
+    productCart.quantity += 1;
+    setCartProducts([...cartProducts]); // Causar un renderizado actualizando el estado
+  }
+
+  const decreaseQuantity = (id, quantity) => {
+    const deletedProduct = cartProducts.filter(product => product.id != id);
+    const productCart = cartProducts.find(cartItem => cartItem.id === id);
+    productCart.quantity -= 1;
+    setCartProducts([...cartProducts]); 
+    if (productCart.quantity === 0){
+      setCartProducts(deletedProduct);
+    } 
+  }
+
   return (
     <aside className={`${openCartMenu ? 'flex' : 'hidden'} checkout-detail flex-col fixed right-0 bg-[#f7f3ff]`}>
       {/* Header */}
@@ -25,7 +41,7 @@ const CheckoutMenu = () => {
         </div>
       </div>
       {/* Body */}
-      <div className='px-6 overflow-y-scroll'>
+      <div className='px-2 overflow-y-scroll'>
         {
           cartProducts.map(product => (
             <OrderCard
@@ -34,13 +50,16 @@ const CheckoutMenu = () => {
               title={product.title}
               imageUrl={product.image}
               price={product.price}
+              quantity={product.quantity}
               handleDelete={handleDelete}
+              increaseQuantity={increaseQuantity}
+              decreaseQuantity={decreaseQuantity}
             />
           ))
         }
       </div>
       {/* Footer */}
-      <div className='px-6 mb-6'>
+      <div className='px-6 mt-2 mb-6'>
         <p className='flex justify-between items-center mb-2'>
           <span className='font-light'>Total:</span>
           <span className='font-medium text-lg'>${totalPrice(cartProducts)}</span>
