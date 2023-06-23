@@ -5,7 +5,7 @@ import { ShoppingBagIcon } from '@heroicons/react/24/solid';
 import logoBlack from '../../Assets/astro-place-black.png'
 
 const Navbar = () => {
-    const { cartProducts } = useContext(ShoppingCartContext);
+    const { cartProducts, setOpenCartMenu } = useContext(ShoppingCartContext);
     const activeStyle = 'underline underline-offset-4';
     
     return (
@@ -105,8 +105,12 @@ const Navbar = () => {
                         SignIn
                     </NavLink>
                 </li>
-                <li className='flex items-center'>
-                    <ShoppingBagIcon className='h-6 w-6 text-blue-500	'></ShoppingBagIcon> 
+                <li className='flex items-center cursor-pointer'>
+                    <ShoppingBagIcon 
+                        className='h-6 w-6 text-blue-500'
+                        onClick={()=> setOpenCartMenu(state => !state)}
+                    >
+                    </ShoppingBagIcon> 
                     <div> {cartProducts.length} </div>
                 </li>
             </ul>

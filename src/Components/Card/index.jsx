@@ -8,7 +8,6 @@ const Card = (data) => {
         setProductShow, 
         cartProducts, 
         setCartProducts,
-        openCheckoutMenu,
     } = useContext(ShoppingCartContext);
 
   const showProduct = (productDetail) => {
@@ -20,7 +19,6 @@ const Card = (data) => {
     // Escuchamos solo un evento, el de añadir
     event.stopPropagation();
     setCartProducts([...cartProducts, productData]);
-    openCheckoutMenu();
   };
 
   const handleDelete = (event, id) => {

@@ -11,9 +11,7 @@ export const ShoppingCartProvider = ({children}) => {
     const [productShow, setProductShow] = useState({});
 
     // Checkout Product
-    const [isCheckoutMenu, setIsCheckOutMenu] = useState(false);
-    const openCheckoutMenu = () => setIsCheckOutMenu(true);
-    const closeCheckoutMenu = () => setIsCheckOutMenu(false);
+    const [openCartMenu, setOpenCartMenu] = useState(false);
 
     return (
         <ShoppingCartContext.Provider
@@ -24,9 +22,8 @@ export const ShoppingCartProvider = ({children}) => {
                 setProductShow,
                 cartProducts,
                 setCartProducts,
-                isCheckoutMenu,
-                openCheckoutMenu,
-                closeCheckoutMenu,
+                openCartMenu,
+                setOpenCartMenu
             }}
         >
             {children}
