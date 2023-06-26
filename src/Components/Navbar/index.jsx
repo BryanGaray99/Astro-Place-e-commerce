@@ -107,7 +107,7 @@ const Navbar = () => {
                 </li>
                 <li className='flex items-center cursor-pointer'>
                     <ShoppingBagIcon 
-                        className='h-6 w-6 text-blue-500'
+                        className='h-6 w-6 text-[#6936F5]'
                         onClick={()=> setOpenCartMenu(state => !state)}
                     >
                     </ShoppingBagIcon> 

@@ -11,8 +11,7 @@ const OrderCard = props => {
     increaseQuantity, 
     decreaseQuantity 
   } = props
-
-
+  
   return (
     <div className="flex items-center mb-3 border-b-2 border-b-[#e5d8ff] border-solid w-full">
       {/* Product image and Title */}

@@ -1,12 +1,24 @@
-import { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import { ShoppingCartContext } from '../../Context';
-import { totalPrice } from '../../Utils';
+import { totalPrice } from '../../Utils/sum';
+import { dateTime } from '../../Utils/dateTime';
 import OrderCard from '../OrderCard';
+import { ReactComponent as CartSVG } from './cart.svg';
+import { ReactComponent as CheckSVG } from './check.svg';
 import './styles.css';
 
 const CheckoutMenu = () => {
-  const { openCartMenu, setOpenCartMenu, cartProducts, setCartProducts } = useContext(ShoppingCartContext);
+  const { openCartMenu, 
+    setOpenCartMenu, 
+    cartProducts, 
+    setCartProducts,
+    order, 
+    setOrder, 
+    cartChecked,
+    setCartChecked 
+  } = useContext(ShoppingCartContext);
 
   const handleDelete = (id) => {
     const deletedProduct = cartProducts.filter(product => product.id != id);
@@ -29,6 +41,19 @@ const CheckoutMenu = () => {
     } 
   }
 
+  const handleCheckout = () => {
+    const orderToAdd = {
+      date: dateTime(),
+      products: cartProducts,
+      quantityProducts: cartProducts.length,
+      totalPrice: totalPrice(cartProducts)
+    }
+    console.log(dateTime())
+    setOrder([...order, orderToAdd]);
+    setCartProducts([]);
+    setCartChecked(true);
+  }
+
   return (
     <aside className={`${openCartMenu ? 'flex' : 'hidden'} checkout-detail flex-col fixed right-0 bg-[#f7f3ff]`}>
       {/* Header */}
@@ -41,7 +66,7 @@ const CheckoutMenu = () => {
         </div>
       </div>
       {/* Body */}
-      <div className='px-2 overflow-y-scroll'>
+      <div className='px-2 overflow-y-scroll flex-1'>
         {
           cartProducts.map(product => (
             <OrderCard
@@ -64,10 +89,24 @@ const CheckoutMenu = () => {
           <span className='font-light'>Total:</span>
           <span className='font-medium text-lg'>${totalPrice(cartProducts)}</span>
         </p>
-        {/* <button className='bg-black py-3 text-white w-full rounded-lg' onClick={() => handleCheckout()}>Checkout</button> */}
+        {/* Checkout My Order */}
+        <Link to='/my-orders/last'>
+          <button 
+            className={`button w-full justify-center ${cartChecked? 'checked-out' : ''}`}
+            onClick={
+              () => handleCheckout()
+            }
+            >
+            <CartSVG className={`cart w-[24px] h-[24px]`}/>
+            <span className='text-white'>Checkout</span>
+            <CheckSVG className='check w-[24px] h-[24px]'/>
+          </button>
+        </Link>
       </div>
     </aside>
   )
 }
 
 export default CheckoutMenu
+
+// bg-[#9e6eff] py-2 text-white w-full rounded-lg

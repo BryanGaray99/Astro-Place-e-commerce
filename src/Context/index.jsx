@@ -11,6 +11,11 @@ export const ShoppingCartProvider = ({children}) => {
     const [openProductDetail, setOpenProductDetail] = useState(false);
     const [productShow, setProductShow] = useState({});
 
+    // Order
+    const [order, setOrder] = useState([])
+    const [cartChecked, setCartChecked] = useState(false);
+
+
     return (
         <ShoppingCartContext.Provider
             value ={{
@@ -21,7 +26,11 @@ export const ShoppingCartProvider = ({children}) => {
                 cartProducts,
                 setCartProducts,
                 openCartMenu,
-                setOpenCartMenu
+                setOpenCartMenu,
+                order,
+                setOrder,
+                cartChecked,
+                setCartChecked
             }}
         >
             {children}
