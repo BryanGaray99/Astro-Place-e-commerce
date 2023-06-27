@@ -72,9 +72,6 @@ const Navbar = () => {
                 </li>
             </ul>
             <ul className='flex items-center gap-3'>
-                <li className='text-black/60'>
-                    bgaray@astroplace.ec
-                </li>
                 <li>
                     <NavLink 
                         to='/my-orders'
@@ -105,11 +102,11 @@ const Navbar = () => {
                         SignIn
                     </NavLink>
                 </li>
-                <li className='flex items-center cursor-pointer'>
-                    <ShoppingBagIcon 
-                        className='h-6 w-6 text-[#6936F5]'
-                        onClick={()=> setOpenCartMenu(state => !state)}
-                    >
+                <li 
+                    className='flex items-center cursor-pointer'
+                    onClick={()=> setOpenCartMenu(state => !state)}
+                >
+                    <ShoppingBagIcon className='h-6 w-6 text-[#6936F5]'>
                     </ShoppingBagIcon> 
                     <div> {cartProducts.length} </div>
                 </li>

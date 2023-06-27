@@ -43,12 +43,12 @@ const CheckoutMenu = () => {
 
   const handleCheckout = () => {
     const orderToAdd = {
-      date: dateTime(),
+      dateTime: dateTime(),
       products: cartProducts,
       quantityProducts: cartProducts.length,
       totalPrice: totalPrice(cartProducts)
     }
-    console.log(dateTime())
+    // console.log(dateTime())
     setOrder([...order, orderToAdd]);
     setCartProducts([]);
     setCartChecked(true);
