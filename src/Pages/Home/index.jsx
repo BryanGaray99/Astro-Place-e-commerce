@@ -5,45 +5,55 @@ import Card from '../../Components/Card';
 import ProductDetail from '../../Components/ProductDetail';
 import ProductModal from '../../Components/ProductModal';
 import logoBlack from '../../Assets/astro-place-black.png';
+import LoadingSkeletons from '../../Components/LoadingSkeletons';
 
 function Home() {
   const { 
-    items, 
     filteredItems, 
     openProductDetail, 
-    searchByTitle,
-    searchByCategory,
     setSearchByTitle,
-    setSearchByCategory,
+    setSearchByCategory, 
+    loading
   } = useContext(ShoppingCartContext);
 
-  const currentCategoryPath = window.location.pathname;
-  let categoryPath = currentCategoryPath.substring(currentCategoryPath.lastIndexOf('/') + 1);
-  // console.log(categoryPath);
-  setSearchByCategory(categoryPath);
-  
   const renderProductsView = () => {
-    if (filteredItems?.length >0) {
+    const currentCategoryPath = window.location.pathname;
+    let categoryPath = currentCategoryPath.substring(currentCategoryPath.lastIndexOf('/') + 1);
+    setSearchByCategory(categoryPath);
+    
+    if (loading){  
       return (
         <div className='grid grid-flow-row gap-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-2'>
-          {filteredItems?.map(item => (
-            <Card key={item.id} data={item}/>
+          {Array.from({ length: 20 }, (_, index) => (
+            <LoadingSkeletons key={index} />
           ))}
         </div>
       );
-    } else {
-      return (
-        <div className='relative w-[50%] h-[400px] flex flex-col items-center justify-center mt-4'>
-          <div className='flex-1 items-center justify-center text-center'>
-            <p className='font-montserrat mt-2'>We are sorry!</p>
-            <p className='font-montserrat mt-1'>The product you are searching was not found 😿</p>
-          </div>  
-          <figure className='w-[300px] h-[300px] items-center justify-center mt-4 '>
-            <img src={logoBlack} className='w-full h-full object-contain rounded-lg'></img>
-          </figure>
-        </div>
-      )
+    }else {
+      if (filteredItems?.length>0) {
+        return (
+          <div className='grid grid-flow-row gap-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-2'>
+            {filteredItems?.map(item => (
+              <Card key={item.id} data={item}/>
+            ))}
+          </div>
+        );
+      } else {
+        return (
+          <div className='relative w-[50%] h-[400px] flex flex-col items-center justify-center mt-4'>
+            <div className='flex-1 items-center justify-center text-center'>
+              <p className='font-montserrat mt-2'>We are sorry!</p>
+              <p className='font-montserrat mt-1'>The product you are searching was not found 😿</p>
+            </div>  
+            <figure className='w-[300px] h-[300px] items-center justify-center mt-4 '>
+              <img src={logoBlack} className='w-full h-full object-contain rounded-lg'></img>
+            </figure>
+          </div>
+        )
+      }
     }
+
+
   };
 
   return (

@@ -5,7 +5,7 @@ import OrdersCard from '../../Components/OrdersCard';
 import { ShoppingCartContext } from '../../Context';
 
 function MyOrders() {
-  const {order} = useContext(ShoppingCartContext);
+  const {order, setSearchByTitle} = useContext(ShoppingCartContext);
 
   return (
     <Layout>
@@ -15,7 +15,7 @@ function MyOrders() {
           <p className='text-lg font-medium text-center'>My Orders</p>
         </div>
         {/* Body */}
-        <div className={`${(order > 0 ) ? 'overflow-y-scroll' : ''} mt-8 px-2 flex-1`}>
+        <div className={`${(order > 0 ) ? 'overflow-y-scroll' : ''}mt-8 px-2 flex-1`} onClick={setSearchByTitle(null)}>
           {
             order.map((order, index) => (
               <Link key={index} to={`/my-orders/${index}`}>

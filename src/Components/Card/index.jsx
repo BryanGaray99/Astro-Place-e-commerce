@@ -60,7 +60,7 @@ const Card = (data) => {
 
   return (
     <div 
-        className='bg-white cursor-pointer w-56 h-60 rounded-lg  shadow-lg mb-3'
+        className='bg-white cursor-pointer w-40 h-48 rounded-lg  shadow-lg mb-3'
         onClick={() => showProduct(data.data)}
     >
         <figure className='relative mb-2 w-full h-[75%]'>

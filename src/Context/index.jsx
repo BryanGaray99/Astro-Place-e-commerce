@@ -4,6 +4,11 @@ import apiUrl from '../API';
 export const ShoppingCartContext = createContext();
 
 export const ShoppingCartProvider = ({children}) => {
+
+    // Loading and error
+    const [ loading, setLoading] = useState(true);
+    const [ error, setError] = useState(false);
+   
     // Items
     const [items, setItems] = useState(null);
     const [filteredItems, setFilteredItems] = useState(null);
@@ -36,8 +41,9 @@ export const ShoppingCartProvider = ({children}) => {
             console.error(`Error inesperado: ${error}`);
           }
         }
+        if (items) setLoading(false);
         fetchData()
-      }, [items]);    
+      }, [items]);
 
     // Filtered Items by Title
     const filterItemsByTitle = (items, searchByTitle) => { 
@@ -73,13 +79,11 @@ export const ShoppingCartProvider = ({children}) => {
       if (!searchByTitle && !searchByCategory) setFilteredItems(filterBy(null, items, searchByTitle, searchByCategory));
     }, [items, searchByTitle, searchByCategory])
 
-    // console.log('Category', searchByCategory);
-    // console.log('items:', filteredItems);
-
-
     return (
         <ShoppingCartContext.Provider
             value ={{
+                loading,
+                error,
                 items,
                 setItems,
                 filteredItems,

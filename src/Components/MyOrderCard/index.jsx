@@ -28,4 +28,4 @@ const MyOrderCard= props => {
   )
 }
 
-export default MyOrderCard
+export default MyOrderCard;

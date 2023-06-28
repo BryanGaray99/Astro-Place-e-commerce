@@ -118,16 +118,6 @@ const Navbar = () => {
                         </div>
                     </NavLink>
                 </li>
-                <li>
-                    <NavLink 
-                        to='/my-account'
-                        className={({ isActive }) => 
-                            isActive ? activeStyle : undefined
-                        }
-                    >
-                        My Account 
-                    </NavLink>
-                </li>
                 <li 
                     className='flex items-center cursor-pointer'
                     onClick={()=> setOpenCartMenu(state => !state)}
