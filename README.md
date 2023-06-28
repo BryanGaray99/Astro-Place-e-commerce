@@ -21,8 +21,13 @@ la url pública.
 Link: <a href="https://bryangaray99.github.io/Aync-landing-page/" target="_blank" rel="noopener noreferrer">Click Aquí!</a>
 
 <p align="center">
-  <img src="/src/assets/preview.png" alt="Preview.png">
-  <p align="center">Vista del sitio web</p>
+  <img src="/src/assets/astroplace-desktop.png" alt="Preview.png">
+  <p align="center">Vista del sitio web versión Desktop</p>
+</p>
+<br/>
+<p align="center">
+  <img src="/src/assets/astroplace-mobile.jpeg" alt="Preview.png">
+  <p align="center">Vista del sitio web versión Mobile</p>
 </p>
 
 ## License
@@ -32,6 +37,5 @@ This project is released under the [MIT License](https://opensource.org/licenses
 <p>Bryan Garay</p>
 <p>Contact: bryangarayacademico@gmail.com</p>
 
-## Proyecto creado con Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Proyecto creado con create vite@latest
+https://vitejs.dev/guide/
