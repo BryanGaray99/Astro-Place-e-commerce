@@ -58,7 +58,7 @@ const CheckoutMenu = () => {
   }
 
   return (
-    <aside className={`${openCartMenu ? 'flex' : 'hidden'} checkout-detail flex-col fixed right-0 bg-[#f7f3ff]`}>
+    <aside className={`${openCartMenu ? 'flex' : 'hidden'} checkout-detail w-full md:w-[360px] h-[calc(100vh-130px)] top-[90px] flex-col fixed right-0 bg-[#f7f3ff]`}>
       {/* Header */}
       <div className='flex justify-between items-center p-3'>
         <h2 className='font-medium text-medium'>My Order</h2>

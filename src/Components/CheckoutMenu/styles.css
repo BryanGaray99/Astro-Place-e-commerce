@@ -1,7 +1,4 @@
 .checkout-detail{
-  width: 360px;
-  height: calc(100vh - 140px);
-  top: 100px;
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
   border-top: 4px solid #e5d8ff;

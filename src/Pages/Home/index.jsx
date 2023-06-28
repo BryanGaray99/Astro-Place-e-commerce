@@ -5,6 +5,7 @@ import Card from '../../Components/Card';
 import ProductDetail from '../../Components/ProductDetail';
 import ProductModal from '../../Components/ProductModal';
 import logoBlack from '../../Assets/astro-place-black.png';
+import error404 from '../../Assets/error404.jpg';
 import LoadingSkeletons from '../../Components/LoadingSkeletons';
 
 function Home() {
@@ -12,7 +13,8 @@ function Home() {
     filteredItems, 
     openProductDetail, 
     setSearchByTitle,
-    setSearchByCategory, 
+    setSearchByCategory,
+    error, 
     loading
   } = useContext(ShoppingCartContext);
 
@@ -20,7 +22,23 @@ function Home() {
     const currentCategoryPath = window.location.pathname;
     let categoryPath = currentCategoryPath.substring(currentCategoryPath.lastIndexOf('/') + 1);
     setSearchByCategory(categoryPath);
-    
+
+    if (error){
+      return (
+        <div className='relative w-[50%] h-[400px] flex flex-col items-center justify-center mt-8'>
+          <div className='flex-1 items-center justify-center text-center'>
+            <p className='font-montserrat mt-2'>We are sorry!</p>
+            <p className='font-montserrat mt-1'>The API is not responding, try Astro Place later... 😿</p>
+          </div>
+          <div className='flex flex-col justify-center items-center'>
+            <figure className='w-[300px] h-[300px] items-center justify-center mt-4 '>
+              <img src={error404} className='w-full h-full object-contain rounded-lg'></img>
+            </figure>
+            <a className='text-xs text-gray-500' href="https://www.freepik.com/free-vector/404-error-lost-space-concept-illustration_20602747.htm#query=404%20page&position=30&from_view=keyword&track=ais">Image by storyset on Freepik</a> 
+          </div>  
+        </div>
+      )
+    }
     if (loading){  
       return (
         <div className='grid grid-flow-row gap-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-2'>
@@ -58,11 +76,11 @@ function Home() {
 
   return (
     <Layout>
-      <span className='bg-transparent w-[calc(35%_-_40px)] relative flex justify-center items-center mt-2 mb-2 rounded-lg'>
+      <span className='bg-transparent w-[calc(35%_-_40px)] relative flex justify-center items-center mt-[2vh] mb-2 rounded-lg'>
           <input 
               type = "text" 
               className='h-8 w-[500px] text-medium text-center font-sm rounded-lg border-2 border-solid border-[#ced5e4] focus:outline-[#ae8af7] placeholder-[#ced5e4] font-montserrat'
-              placeholder="Buscar un producto" 
+              placeholder="Search a product" 
               onChange={(event) =>
                   {
                     setSearchByTitle(event.target.value);

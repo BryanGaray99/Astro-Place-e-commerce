@@ -9,7 +9,7 @@ const OrdersCard = props => {
   } = props
   
   return (
-    <div className="flex justify-between items-center mb-3 border border-black rounded-lg p-4 w-80 bg-[#f7f3ff]">
+    <div className="flex justify-between items-center mb-3 border border-black rounded-lg p-4 md:w-80 w-60 bg-[#f7f3ff]">
       <div className='flex justify-between w-full'>
         <div className='flex flex-col'>
           <p className='flex items-center gap-2'>
@@ -23,7 +23,7 @@ const OrdersCard = props => {
         </div>
         <p className='flex items-center gap-2'>
           <span className='font-medium text-xl'>${totalPrice}</span>
-          <ChevronRightIcon className='h-6 w-6 text-black cursor-pointer' />
+          <ChevronRightIcon className='hidden md:flex h-6 w-6 text-black cursor-pointer' />
         </p>
       </div>
     </div>

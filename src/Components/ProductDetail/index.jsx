@@ -9,7 +9,7 @@ function ProductDetail () {
     const onCancel = () => { setOpenProductDetail(false) };
 
     return (
-        <div className='flex flex-col fixed bg-white rounded-lg w-[400px] h-[calc(100vh-130px)] overflow-hidden shadow-lg hover:shadow-xl 
+        <div className='flex flex-col fixed bg-white rounded-lg md:w-[400px] h-[calc(100vh-130px)] overflow-hidden shadow-lg hover:shadow-xl 
                     hover:scale-105 duration-500 transform transition'>
             <figure className='w-full h-[50%]'>
                 <div 

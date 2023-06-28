@@ -30,6 +30,9 @@ export const ShoppingCartProvider = ({children}) => {
     const [cartChecked, setCartChecked] = useState(false);
     const [isNewOrder, setIsNewOrder] = useState(false);
 
+    // Mobile Menu
+    const [showMobileMenu, setShowMobileMenu] = useState(false);
+
     // Call to API
     useEffect(() => {
         const fetchData = async () => {
@@ -38,7 +41,8 @@ export const ShoppingCartProvider = ({children}) => {
             const data = await response.json();
             setItems(data);
           } catch (error) {
-            console.error(`Error inesperado: ${error}`);
+            console.error(`Error inesperado: ${error}`)
+            setError(true);
           }
         }
         if (items) setLoading(false);
@@ -105,7 +109,9 @@ export const ShoppingCartProvider = ({children}) => {
                 cartChecked,
                 setCartChecked,
                 isNewOrder,
-                setIsNewOrder
+                setIsNewOrder,
+                showMobileMenu,
+                setShowMobileMenu
             }}
         >
             {children}

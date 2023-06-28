@@ -22,8 +22,8 @@ function MyOrder() {
 
   return (
     <Layout>
-      <div className='flex w-[50%] h-[calc(100vh_-_140px)] rounded-br-2xl rounded-bl-2xl 
-                      border-t-4 border-t-[#e5d8ff] border-solid top-[100px] flex-col fixed bg-[#ffffff]'>
+      <div className='flex md:w-[50%] h-[calc(100vh_-_140px)] rounded-br-2xl rounded-bl-2xl 
+                      border-t-4 border-t-[#e5d8ff] border-solid top-[90px] flex-col fixed bg-[#ffffff]'>
         <div className='items-center relative mt-4'>
           <Link to='/my-orders' className='absolute left-0 top-1 px-2'>
             <ChevronLeftIcon className='h-6 w-6 text-black cursor-pointer' />
@@ -32,7 +32,7 @@ function MyOrder() {
           <p className='text-sm font-sm text-right mt-4 px-2'>Date: {dateTime}</p>
         </div>
 
-        <div className='mt-8 overflow-y-scroll px-2 flex-1'>
+        <div className='mt-4 overflow-y-scroll px-2 flex-1'>
           {
             lastOrderProducts.map(product => (
               <MyOrderCard
@@ -46,7 +46,8 @@ function MyOrder() {
             ))
           }
         </div>
-        <div className='px-2 mt-2 mb-6'>
+        {/* Footer */}
+        <div className='px-2 mt-4 mb-4'>
           <p className='flex justify-between items-center mb-2'>
             <span className='font-light text-lg'>Total:</span>
             <span className='font-medium text-lg'>${totalPrice(lastOrderProducts)}</span>
