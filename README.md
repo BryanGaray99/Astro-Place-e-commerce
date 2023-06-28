@@ -2,7 +2,7 @@
 
 ## Descripción
 Here is the final project of the "React.js con Vite.js y Tailwind CSS" course from Platzi. 
-<br/> My goal with the course was to put into practice web development skills and create an interactive, 
+My goal with the course was to put into practice web development skills and create an interactive, 
 responsive and customized e-commerce with my own style. 
 <br/>I hope you like it!
 </p>
@@ -26,7 +26,7 @@ Link: <a href="https://bryangaray99.github.io/Aync-landing-page/" target="_blank
 </p>
 <br/>
 <p align="center">
-  <img src="/src/Assets/astroplace-mobile.jpeg" alt="Preview.png">
+  <img src="/src/Assets/astroplace-mobile.jpeg" alt="Preview.png" style="width: 50%; height: auto;">
   <p align="center">Vista del sitio web versión Mobile</p>
 </p>
 
