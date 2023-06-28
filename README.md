@@ -21,12 +21,12 @@ la url pública.
 Link: <a href="https://bryangaray99.github.io/Aync-landing-page/" target="_blank" rel="noopener noreferrer">Click Aquí!</a>
 
 <p align="center">
-  <img src="/src/assets/astroplace-desktop.png" alt="Preview.png">
+  <img src="/src/Assets/astroplace-desktop.png" alt="Preview.png">
   <p align="center">Vista del sitio web versión Desktop</p>
 </p>
 <br/>
 <p align="center">
-  <img src="/src/assets/astroplace-mobile.jpeg" alt="Preview.png">
+  <img src="/src/Assets/astroplace-mobile.jpeg" alt="Preview.png">
   <p align="center">Vista del sitio web versión Mobile</p>
 </p>
 
