@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import { ShoppingCartContext } from '../../Context';
 import { totalPrice } from '../../Utils/sum';
@@ -17,7 +16,9 @@ const CheckoutMenu = () => {
     order, 
     setOrder, 
     cartChecked,
-    setCartChecked 
+    setCartChecked,
+    setIsNewOrder,
+    setSearchByTitle, 
   } = useContext(ShoppingCartContext);
 
   const handleDelete = (id) => {
@@ -52,6 +53,8 @@ const CheckoutMenu = () => {
     setOrder([...order, orderToAdd]);
     setCartProducts([]);
     setCartChecked(true);
+    setIsNewOrder(true);
+    setSearchByTitle(null);
   }
 
   return (
@@ -90,18 +93,16 @@ const CheckoutMenu = () => {
           <span className='font-medium text-lg'>${totalPrice(cartProducts)}</span>
         </p>
         {/* Checkout My Order */}
-        <Link to='/my-orders/last'>
-          <button 
-            className={`button w-full justify-center ${cartChecked? 'checked-out' : ''}`}
-            onClick={
-              () => handleCheckout()
-            }
-            >
-            <CartSVG className={`cart w-[24px] h-[24px]`}/>
-            <span className='text-white'>Checkout</span>
-            <CheckSVG className='check w-[24px] h-[24px]'/>
-          </button>
-        </Link>
+        <button 
+          className={`button w-full justify-center ${cartChecked? 'checked-out' : ''}`}
+          onClick={
+            () => handleCheckout()
+          }
+          >
+          <CartSVG className={`cart w-[24px] h-[24px]`}/>
+          <span className='text-white'>Checkout</span>
+          <CheckSVG className='check w-[24px] h-[24px]'/>
+        </button>
       </div>
     </aside>
   )

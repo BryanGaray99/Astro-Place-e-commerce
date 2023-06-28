@@ -31,7 +31,7 @@ const Card = (data) => {
 
   
   const renderIcon = (id) => {
-    const isInCart = cartProducts.filter(product => product.id === id).length > 0
+    const isInCart = cartProducts.filter(product => product.id === id).length > 0;
 
     if (isInCart) {
       return (
@@ -56,7 +56,7 @@ const Card = (data) => {
         </div>
       )
     }
-  }
+  };
 
   return (
     <div 

@@ -3,11 +3,29 @@ import { ShoppingCartContext } from '../../Context';
 import { NavLink } from 'react-router-dom';
 import { ShoppingBagIcon } from '@heroicons/react/24/solid';
 import logoBlack from '../../Assets/astro-place-black.png';
+import './styles.css';
 
 const Navbar = () => {
-    const { cartProducts, setOpenCartMenu } = useContext(ShoppingCartContext);
+    const { 
+        isNewOrder, 
+        cartProducts, 
+        setOpenCartMenu, 
+        setIsNewOrder, 
+        setSearchByCategory
+    } = useContext(ShoppingCartContext);
+    
     const activeStyle = 'underline underline-offset-4';
     
+    const newOrderAnimation = () => {
+        if (isNewOrder) {
+            return (
+                <span className='newOrder inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-[#915ef7] rounded-full -mt-2 ml-1'>
+                    +1
+                </span>
+            )
+        }
+    };
+
     return (
         <nav className='flex justify-between items-center fixed z-10 top-0 w-full h-[100px] py-5 px-8 text-sm bg-[#f7f3ff]'>
             <ul className='flex items-center gap-3'>
@@ -20,7 +38,7 @@ const Navbar = () => {
                         </img>
                     </NavLink>
                 </li>
-                <li>
+                <li               >
                     <NavLink 
                         to='/'
                         className={({ isActive }) => 
@@ -30,19 +48,24 @@ const Navbar = () => {
                         All
                     </NavLink>
                 </li>
-                <li>
+                <li
+                    onClick={() => setSearchByCategory('Altazimuth')}
+                >
                     <NavLink 
-                        to='/altazimuth'
+                        to='/Altazimuth'
                         className={({ isActive }) => 
                             isActive ? activeStyle : undefined
                         }
+                        onClick={() => setSearchByCategory()}
                     >
                         Altazimuth 
                     </NavLink>
                 </li>
-                <li>
+                <li
+                    onClick={() => setSearchByCategory('Equatorial')}
+                >
                     <NavLink 
-                        to='/equatorial'
+                        to='/Equatorial'
                         className={({ isActive }) => 
                             isActive ? activeStyle : undefined
                         }
@@ -50,9 +73,11 @@ const Navbar = () => {
                         Equatorial
                     </NavLink>
                 </li>
-                <li>
+                <li
+                    onClick={() => setSearchByCategory('Dobsonian')}
+                >                    
                     <NavLink 
-                        to='/dobsonian'
+                        to='/Dobsonian'
                         className={({ isActive }) => 
                             isActive ? activeStyle : undefined
                         }
@@ -60,9 +85,11 @@ const Navbar = () => {
                         Dobsonian
                     </NavLink>
                 </li>
-                <li>
+                <li
+                    onClick={() => setSearchByCategory('Accessories')}
+                >   
                     <NavLink 
-                        to='/accesories'
+                        to='/Accessories'
                         className={({ isActive }) => 
                             isActive ? activeStyle : undefined
                         }
@@ -71,15 +98,24 @@ const Navbar = () => {
                     </NavLink>
                 </li>
             </ul>
-            <ul className='flex items-center gap-3'>
-                <li>
+            <ul className='flex items-center gap-5'>
+                <li
+                    className='flex items-center cursor-pointer'
+                    onClick={()=>(
+                        setIsNewOrder(false),
+                        setOpenCartMenu(false)
+                        )}
+                >
                     <NavLink 
                         to='/my-orders'
                         className={({ isActive }) => 
                             isActive ? activeStyle : undefined
                         }
                     >
-                        My Orders
+                        <div>
+                            <span className='text-black'> My Orders </span>
+                            {newOrderAnimation()}
+                        </div>
                     </NavLink>
                 </li>
                 <li>
@@ -90,16 +126,6 @@ const Navbar = () => {
                         }
                     >
                         My Account 
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink 
-                        to='/sign-in'
-                        className={({ isActive }) => 
-                            isActive ? activeStyle : undefined
-                        }
-                    >
-                        SignIn
                     </NavLink>
                 </li>
                 <li 

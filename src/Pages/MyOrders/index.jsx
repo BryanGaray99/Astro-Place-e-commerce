@@ -15,7 +15,7 @@ function MyOrders() {
           <p className='text-lg font-medium text-center'>My Orders</p>
         </div>
         {/* Body */}
-        <div className='mt-8 px-2 flex-1 overflow-y-scroll '>
+        <div className={`${(order > 0 ) ? 'overflow-y-scroll' : ''} mt-8 px-2 flex-1`}>
           {
             order.map((order, index) => (
               <Link key={index} to={`/my-orders/${index}`}>

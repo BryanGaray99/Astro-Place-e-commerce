@@ -1,8 +1,17 @@
-import { createContext, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
+import apiUrl from '../API';
 
 export const ShoppingCartContext = createContext();
 
 export const ShoppingCartProvider = ({children}) => {
+    // Items
+    const [items, setItems] = useState(null);
+    const [filteredItems, setFilteredItems] = useState(null);
+
+    // Search Items
+    const [searchByTitle, setSearchByTitle] = useState(null);
+    const [searchByCategory, setSearchByCategory] = useState(null);
+
     // Shopping Cart
     const [cartProducts, setCartProducts] = useState([]);
     const [openCartMenu, setOpenCartMenu] = useState(false);
@@ -11,14 +20,74 @@ export const ShoppingCartProvider = ({children}) => {
     const [openProductDetail, setOpenProductDetail] = useState(false);
     const [productShow, setProductShow] = useState({});
 
-    // Order
+    // Orders
     const [order, setOrder] = useState([])
     const [cartChecked, setCartChecked] = useState(false);
+    const [isNewOrder, setIsNewOrder] = useState(false);
+
+    // Call to API
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await fetch(`${apiUrl}/products`);
+            const data = await response.json();
+            setItems(data);
+          } catch (error) {
+            console.error(`Error inesperado: ${error}`);
+          }
+        }
+        fetchData()
+      }, [items]);    
+
+    // Filtered Items by Title
+    const filterItemsByTitle = (items, searchByTitle) => { 
+      // Hago un filtrado de  los items si existen. Por cada item, el título del ítem lo paso a Lower Case
+      // Si incluye el texto buscado en minúsculas entonces lo filtra.
+      return items?.filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()));
+    };
+
+    // Filtered Items by Category
+    const filterItemsByCategory = (items, searchByCategory) => { 
+      return items?.filter(item => item.category.name.includes(searchByCategory));
+    };
+
+    const filterBy = (searchType, items, searchByTitle, searchByCategory) => {
+      if (searchType === 'All'){
+        return filterItemsByCategory(items, searchByCategory).filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()));
+      };
+      if (searchType === 'By_title'){
+        return filterItemsByTitle(items, searchByTitle)
+      };
+      if (searchType === 'By_category'){
+        return filterItemsByCategory(items, searchByCategory)
+      };
+      if (!searchType){
+        return items;
+      };
+    }
+
+    useEffect(() =>{
+      if (searchByTitle && searchByCategory) setFilteredItems(filterBy('All', items, searchByTitle, searchByCategory));
+      if (searchByTitle && !searchByCategory) setFilteredItems(filterBy('By_title', items, searchByTitle, searchByCategory));
+      if (!searchByTitle && searchByCategory) setFilteredItems(filterBy('By_category', items, searchByTitle, searchByCategory));
+      if (!searchByTitle && !searchByCategory) setFilteredItems(filterBy(null, items, searchByTitle, searchByCategory));
+    }, [items, searchByTitle, searchByCategory])
+
+    // console.log('Category', searchByCategory);
+    // console.log('items:', filteredItems);
 
 
     return (
         <ShoppingCartContext.Provider
             value ={{
+                items,
+                setItems,
+                filteredItems,
+                setFilteredItems,
+                searchByTitle,
+                setSearchByTitle,
+                searchByCategory,
+                setSearchByCategory,
                 openProductDetail,
                 setOpenProductDetail,
                 productShow,
@@ -30,7 +99,9 @@ export const ShoppingCartProvider = ({children}) => {
                 order,
                 setOrder,
                 cartChecked,
-                setCartChecked
+                setCartChecked,
+                isNewOrder,
+                setIsNewOrder
             }}
         >
             {children}
