@@ -1,4 +1,4 @@
-# Atro Place e-commerce - Proyecto del curso de React.js con Vite.js y Tailwind CSS de Platzi
+# Astro Place e-commerce - Proyecto del curso de React.js con Vite.js y Tailwind CSS de Platzi
 
 ## Descripción
 Here is the final project of the "React.js con Vite.js y Tailwind CSS" course from Platzi. 
