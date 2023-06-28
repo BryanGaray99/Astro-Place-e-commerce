@@ -4,7 +4,10 @@ import apiUrl from '../API';
 export const ShoppingCartContext = createContext();
 
 export const ShoppingCartProvider = ({children}) => {
-
+    
+    // Show Navbar
+    const [showNavBar, setShowNavBar] = useState(true);
+    
     // Loading and error
     const [ loading, setLoading] = useState(true);
     const [ error, setError] = useState(false);
@@ -86,6 +89,8 @@ export const ShoppingCartProvider = ({children}) => {
     return (
         <ShoppingCartContext.Provider
             value ={{
+                showNavBar,
+                setShowNavBar,
                 loading,
                 error,
                 items,

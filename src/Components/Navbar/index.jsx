@@ -7,6 +7,8 @@ import './styles.css';
 
 const Navbar = () => {
   const {
+    showNavBar,
+    setShowNavBar,
     isNewOrder,
     cartProducts,
     setOpenCartMenu,
@@ -15,6 +17,14 @@ const Navbar = () => {
     showMobileMenu,
     setShowMobileMenu
   } = useContext(ShoppingCartContext);
+
+  const currentPath = window.location.pathname;
+  let stringCurrentPath = currentPath.substring(currentPath.lastIndexOf('/'));
+  // console.log(stringCurrentPath);
+  
+  (stringCurrentPath === '/')
+    ? setShowNavBar(false)
+    : null;
 
   const activeStyle = 'underline underline-offset-4 ';
 
@@ -37,7 +47,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className='flex justify-between items-center fixed z-10 top-0 w-full h-[90px] py-5 px-2 text-sm bg-[#f7f3ff]'>
+    <nav className={`${showNavBar ? 'flex' : 'hidden'} justify-between items-center fixed z-10 top-0 w-full h-[90px] py-5 px-2 text-sm bg-[#f7f3ff]`}>
       <div className='flex items-center w-full md:w-auto'>
         <div className='md:hidden'>
           <button
@@ -45,7 +55,7 @@ const Navbar = () => {
             onClick={() => {
               toggleMobileMenu();
               setOpenCartMenu(false);
-            }}            a
+            }}            
             aria-label='Toggle Menu'
           >
             {showMobileMenu ? (
@@ -55,7 +65,10 @@ const Navbar = () => {
             )}
           </button>
         </div>
-        <div className='flex items-center justify-center w-full md:w-auto'>
+        <div 
+          className='flex items-center justify-center w-full md:w-auto'
+          onClick={() => (setOpenCartMenu(false))}
+        >
           <NavLink to='/' className='flex-shrink-0'>
             <img src={logoBlack} className='h-14 w-auto' alt='Logo' />
           </NavLink>
@@ -63,10 +76,13 @@ const Navbar = () => {
         <ul className='hidden md:flex items-center gap-3 ml-6'>
           <li>
             <NavLink
-              to='/'
+              to='/All'
               className={({ isActive }) => 
                             isActive ? activeStyle : undefined}
-              onClick={closeMobileMenu}
+              onClick={() => {
+                closeMobileMenu();
+                setSearchByCategory(null)
+              }}
             >
               All
             </NavLink>
@@ -151,10 +167,12 @@ const Navbar = () => {
           <ul className='flex flex-col gap-4'>
             <li>
               <NavLink
-                to='/'
+                to='/All'
                 className={({ isActive }) => 
-                  isActive ? activeStyle : undefined}
-                onClick={closeMobileMenu}
+                              isActive ? activeStyle : undefined}
+                onClick={() => {
+                  closeMobileMenu();
+                }}
               >
                 All
               </NavLink>

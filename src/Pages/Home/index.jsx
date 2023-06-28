@@ -21,14 +21,17 @@ function Home() {
   const renderProductsView = () => {
     const currentCategoryPath = window.location.pathname;
     let categoryPath = currentCategoryPath.substring(currentCategoryPath.lastIndexOf('/') + 1);
-    setSearchByCategory(categoryPath);
+    
+    (categoryPath !== 'All')
+      ? setSearchByCategory(categoryPath)
+      : null;
 
     if (error){
       return (
         <div className='relative w-[50%] h-[400px] flex flex-col items-center justify-center mt-8'>
           <div className='flex-1 items-center justify-center text-center'>
-            <p className='font-montserrat mt-2'>We are sorry!</p>
-            <p className='font-montserrat mt-1'>The API is not responding, try Astro Place later... 😿</p>
+            <p className='mt-2'>We are sorry!</p>
+            <p className='mt-1'>The API is not responding, try refresing the page... 😿</p>
           </div>
           <div className='flex flex-col justify-center items-center'>
             <figure className='w-[300px] h-[300px] items-center justify-center mt-4 '>
@@ -60,8 +63,8 @@ function Home() {
         return (
           <div className='relative w-[50%] h-[400px] flex flex-col items-center justify-center mt-4'>
             <div className='flex-1 items-center justify-center text-center'>
-              <p className='font-montserrat mt-2'>We are sorry!</p>
-              <p className='font-montserrat mt-1'>The product you are searching was not found 😿</p>
+              <p className='mt-2'>We are sorry!</p>
+              <p className='mt-1'>The product you are searching was not found 😿</p>
             </div>  
             <figure className='w-[300px] h-[300px] items-center justify-center mt-4 '>
               <img src={logoBlack} className='w-full h-full object-contain rounded-lg'></img>
@@ -79,7 +82,7 @@ function Home() {
       <span className='bg-transparent w-[calc(35%_-_40px)] relative flex justify-center items-center mt-[2vh] mb-2 rounded-lg'>
           <input 
               type = "text" 
-              className='h-8 w-[500px] text-medium text-center font-sm rounded-lg border-2 border-solid border-[#ced5e4] focus:outline-[#ae8af7] placeholder-[#ced5e4] font-montserrat'
+              className='h-8 w-[500px] text-medium text-center font-sm rounded-lg border-2 border-solid border-[#ced5e4] focus:outline-[#ae8af7] placeholder-[#ced5e4]'
               placeholder="Search a product" 
               onChange={(event) =>
                   {

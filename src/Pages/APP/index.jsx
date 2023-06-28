@@ -6,12 +6,13 @@ import MyOrders from '../MyOrders';
 import NotFound from '../NotFound';
 import Navbar from '../../Components/Navbar'
 import CheckoutMenu from '../../Components/CheckoutMenu';
+import LandingPage from '../LandingPage';
 import './App.css';
 
 const AppRoutes = () => {
   let routes = useRoutes([
-    { path: '/', element: <Home /> },
-    { path: '/all', element: <Home /> },
+    { path: '/', element: <LandingPage /> },
+    { path: '/All', element: <Home /> },
     { path: '/Altazimuth', element: <Home /> },
     { path: '/Equatorial', element: <Home /> },
     { path: '/Dobsonian', element: <Home /> },
