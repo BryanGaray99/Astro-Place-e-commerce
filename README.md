@@ -29,8 +29,8 @@ Link: <a href="https://astro-place-bg.netlify.app/" target="_blank" rel="noopene
 This project is released under the [MIT License](https://opensource.org/licenses/MIT).
 
 ## Developer
-<p>Bryan Garay</p>
-<p>Contact: bryangarayacademico@gmail.com</p>
+Bryan Garay
+</br>Contact: bryangarayacademico@gmail.com
 
-## Proyecto creado con create vite@latest
+## PRoject created with create vite@latest
 https://vitejs.dev/guide/
