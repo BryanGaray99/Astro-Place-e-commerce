@@ -5,7 +5,7 @@ import logoWhite from '../../Assets/astro-place-white.png';
 import './styles.css';
 
 const LandingPage = () => {
-  const { setShowNavBar } = useContext(ShoppingCartContext);
+  const { setShowNavBar, setSearchByCategory } = useContext(ShoppingCartContext);
   const [bgColor, setBgColor] = useState('#CBB6DD');
   const [showModal, setShowModal] = useState(false);
 
@@ -73,7 +73,7 @@ const LandingPage = () => {
             <NavLink
               to="/All"
               className="bg-white text-[#232834] px-6 py-3 rounded-full font-semibold hover:bg-purple-200 transition duration-300"
-              onClick={() => setShowNavBar(true)}
+              onClick={() => {setShowNavBar(true), setSearchByCategory(null)}}
             >
               Explore
             </NavLink>

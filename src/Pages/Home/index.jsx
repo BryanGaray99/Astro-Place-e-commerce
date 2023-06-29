@@ -14,8 +14,6 @@ function Home() {
     openProductDetail, 
     setSearchByTitle,
     setSearchByCategory,
-    error, 
-    loading, 
     isFetching,
     fetchError
   } = useContext(ShoppingCartContext);
