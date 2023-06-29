@@ -37,7 +37,7 @@ const App = () => {
           <meta name="description" content="Mock e-commerce by Bryan Garay" />
           <meta property="og:title" content="Astro Place" />
           <meta property="og:description" content="Mock e-commerce by Bryan Garay" />
-          <meta property="og:image" content="https://i.ibb.co/xDpQ5w9/public-image.jpg" />
+          <meta property="og:image" content="https://i.ibb.co/SPhpvHY/public-image.jpg"/>
         </Helmet>
         <AppRoutes />
           <Navbar />
