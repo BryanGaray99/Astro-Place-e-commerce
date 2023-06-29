@@ -9,11 +9,10 @@ function ProductDetail () {
     const onCancel = () => { setOpenProductDetail(false) };
 
     return (
-        <div className='flex flex-col fixed bg-white rounded-lg md:w-[400px] h-[calc(100vh-130px)] overflow-hidden shadow-lg hover:shadow-xl 
-                    hover:scale-105 duration-500 transform transition'>
+        <div className='flex flex-col fixed bg-white rounded-lg md:w-[400px] h-[calc(100vh-130px)] overflow-hidden shadow-lg hover:shadow-xl'>
             <figure className='w-full h-[50%]'>
                 <div 
-                    className='absolute top-0 right-0 flex justify-center items-center bg-[#2f323a9d] w-6 h-6 rounded-full m-2 p-1 font-bold cursor-pointer'
+                    className='absolute top-[4px] right-0 flex justify-center items-center bg-[#2f323a9d] w-6 h-6 rounded-full m-2 p-1 font-bold cursor-pointer'
                     onClick={onCancel}
                     
                     >
