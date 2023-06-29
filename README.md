@@ -3,22 +3,18 @@
 ## Descripción
 Here is the final project of the "React.js con Vite.js y Tailwind CSS" course from Platzi. 
 My goal with the course was to put into practice web development skills and create an interactive, 
-responsive and customized e-commerce with my own style. 
+responsive and customized e-commerce with my own style. Also I created my own API and deployed with Render.
 <br/>I hope you like it!
 </p>
 
 ## Deploy 
-El deploy para tener una url pública se lo realiza usando el paquete de npm gh-pages. Una vez guardado como dev
-dependencies, se crea un script en el package.json para correr el comando, en el caso de este proyecto:
-"deploy": "gh-pages -d src". Luego vamos a una terminal dentro del proyecto, corremos "npm run deploy" y con eso
-el comando buscará un index.html dentro de la carpeta src y creará una rama para deploy de nuestro repositorio del 
-proyecto creado previamente en Github. Ingresando a GitHub pages del repositorio de nuestro proyecto, encontraremos 
-la url pública. 
-<p>En el caso de este proyecto: https://bryangaray99.github.io/TODO-Machine-with-React</p>
-<p>Para actualizar luego de algun cambio se puede volver a correr npm run deploy.</p>
+The deploy was made with Netlify by connecting the Github repository to the Netlify account. 
 
-## Vista de la página 
-Link: <a href="https://bryangaray99.github.io/Aync-landing-page/" target="_blank" rel="noopener noreferrer">Click Aquí!</a>
+## Visita de la página 
+Link: <a href="https://astro-place-bg.netlify.app/" target="_blank" rel="noopener noreferrer">Click here!</a>
+You can find the API here: <a href="https://astroplace-fake-api.onrender.com/" target="_blank" rel="noopener noreferrer">API</a>
+And the repository<a href="https://github.com/BryanGaray99/astroplace-fake-api" target="_blank" rel="noopener noreferrer"> of the API</a>
+
 
 <p align="center">
   <img src="/src/Assets/astroplace-desktop.png" alt="Preview.png">
