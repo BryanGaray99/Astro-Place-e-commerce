@@ -13,7 +13,7 @@ The deploy was made with Netlify by connecting the Github repository to the Netl
 ## Visit the website
 Link: <a href="https://astro-place-bg.netlify.app/" target="_blank" rel="noopener noreferrer">Click here!</a>
 <br/>You can find the API here: <a href="https://astroplace-fake-api.onrender.com/" target="_blank" rel="noopener noreferrer">API</a>
-<br/>And the<a href="https://github.com/BryanGaray99/astroplace-fake-api" target="_blank" rel="noopener noreferrer">repository</a>of the API
+<br/>And the <a href="https://github.com/BryanGaray99/astroplace-fake-api" target="_blank" rel="noopener noreferrer">repository</a> of the API
 
 <p align="center">
   <img src="/src/Assets/astroplace-desktop.png" alt="Preview.png">
