@@ -1,4 +1,5 @@
 import { BrowserRouter, useRoutes } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import { ShoppingCartProvider } from '../../Context';
 import Home from '../Home';
 import MyOrder from '../MyOrder';
@@ -31,9 +32,16 @@ const App = () => {
   return (
     <ShoppingCartProvider>
       <BrowserRouter>
+        <Helmet>
+          <title>Astro Place</title>
+          <meta name="description" content="Mock e-commerce by Bryan Garay" />
+          <meta property="og:title" content="Astro Place" />
+          <meta property="og:description" content="Mock e-commerce by Bryan Garay" />
+          <meta property="og:image" content="https://i.ibb.co/xDpQ5w9/public-image.jpg" />
+        </Helmet>
         <AppRoutes />
-        <Navbar />
-        <CheckoutMenu />
+          <Navbar />
+          <CheckoutMenu />
       </BrowserRouter>  
     </ShoppingCartProvider>
     
