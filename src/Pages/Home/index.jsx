@@ -15,7 +15,9 @@ function Home() {
     setSearchByTitle,
     setSearchByCategory,
     error, 
-    loading
+    loading, 
+    isFetching,
+    fetchError
   } = useContext(ShoppingCartContext);
 
   const renderProductsView = () => {
@@ -26,7 +28,7 @@ function Home() {
       ? setSearchByCategory(categoryPath)
       : null;
 
-    if (error){
+    if (fetchError){
       return (
         <div className='relative w-[50%] h-[400px] flex flex-col items-center justify-center mt-8'>
           <div className='flex-1 items-center justify-center text-center'>
@@ -42,7 +44,7 @@ function Home() {
         </div>
       )
     }
-    if (loading){  
+    if (isFetching){  
       return (
         <div className='grid grid-flow-row gap-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-2'>
           {Array.from({ length: 20 }, (_, index) => (

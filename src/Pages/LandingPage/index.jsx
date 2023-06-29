@@ -9,6 +9,14 @@ const LandingPage = () => {
   const [bgColor, setBgColor] = useState('#CBB6DD');
   const [showModal, setShowModal] = useState(false);
 
+  const currentPath = window.location.pathname;
+  let stringCurrentPath = currentPath.substring(currentPath.lastIndexOf('/'));
+  // console.log(stringCurrentPath);
+  
+  (stringCurrentPath === '/')
+    ? setShowNavBar(false)
+    : null;
+
   useEffect(() => {
     const interval = setInterval(() => {
       const randomColor = getRandomColor();
@@ -118,7 +126,7 @@ const LandingPage = () => {
             My goal with the course was to put into practice web development skills and create an interactive, 
             responsive and customized e-commerce with my own style. <br/>I hope you like it!
             </p>
-            <div className="flex justify-center"> {/* Agregado el contenedor flex justify-center */}
+            <div className="flex justify-center">
               <button
                 className="bg-black text-white px-4 py-2 rounded-full mt-4 mx-auto"
                 onClick={closeModal}

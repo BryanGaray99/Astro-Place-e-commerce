@@ -18,13 +18,13 @@ const Navbar = () => {
     setShowMobileMenu
   } = useContext(ShoppingCartContext);
 
-  const currentPath = window.location.pathname;
-  let stringCurrentPath = currentPath.substring(currentPath.lastIndexOf('/'));
+  // const currentPath = window.location.pathname;
+  // let stringCurrentPath = currentPath.substring(currentPath.lastIndexOf('/'));
   // console.log(stringCurrentPath);
   
-  (stringCurrentPath === '/')
-    ? setShowNavBar(false)
-    : null;
+  // (stringCurrentPath === '/')
+  //   ? setShowNavBar(false)
+  //   : null;
 
   const activeStyle = 'underline underline-offset-4 ';
 

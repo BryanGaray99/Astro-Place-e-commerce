@@ -19,14 +19,3 @@
       background-color: #232834;
     }
   }
-
-  .left-side {
-    flex: 1;
-    background-color: #232834;
-    color: white;
-  }
-  
-  .right-side {
-    flex: 1;
-    /* Estilos adicionales para la parte derecha */
-  }

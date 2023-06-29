@@ -11,6 +11,8 @@ export const ShoppingCartProvider = ({children}) => {
     // Loading and error
     const [ loading, setLoading] = useState(true);
     const [ error, setError] = useState(false);
+    const [isFetching, setIsFetching] = useState(true);
+    const [fetchError, setFetchError] = useState(null);
    
     // Items
     const [items, setItems] = useState(null);
@@ -38,19 +40,28 @@ export const ShoppingCartProvider = ({children}) => {
 
     // Call to API
     useEffect(() => {
-        const fetchData = async () => {
-          try {
-            const response = await fetch(`${apiUrl}/products`);
-            const data = await response.json();
-            setItems(data);
-          } catch (error) {
-            console.error(`Error inesperado: ${error}`)
-            setError(true);
-          }
+      const fetchData = async () => {
+        try {
+          const response = await fetch(`${apiUrl}/products`);
+          const data = await response.json();
+          setItems(data);
+        } catch (error) {
+          console.error(`Error inesperado: ${error}`)
+          setFetchError(error.message);
+        } finally {
+          setIsFetching(false);
         }
-        if (items) setLoading(false);
-        fetchData()
-      }, [items]);
+      };
+    
+      fetchData();
+    }, []);
+    
+    useEffect(() => {
+      if (items) {
+        setLoading(false);
+      }
+    }, [items]);
+    // console.log(items);
 
     // Filtered Items by Title
     const filterItemsByTitle = (items, searchByTitle) => { 
@@ -93,6 +104,8 @@ export const ShoppingCartProvider = ({children}) => {
                 setShowNavBar,
                 loading,
                 error,
+                isFetching,
+                fetchError,
                 items,
                 setItems,
                 filteredItems,

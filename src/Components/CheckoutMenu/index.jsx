@@ -50,11 +50,13 @@ const CheckoutMenu = () => {
       totalPrice: totalPrice(cartProducts)
     }
     // console.log(dateTime())
-    setOrder([...order, orderToAdd]);
-    setCartProducts([]);
-    setCartChecked(true);
-    setIsNewOrder(true);
-    setSearchByTitle(null);
+    if(cartProducts.length > 0) {
+      setOrder([...order, orderToAdd])
+      setCartProducts([]);
+      setCartChecked(true);
+      setIsNewOrder(true);
+      setSearchByTitle(null);    
+    }
   }
 
   return (
