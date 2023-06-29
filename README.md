@@ -32,5 +32,5 @@ This project is released under the [MIT License](https://opensource.org/licenses
 Bryan Garay
 </br>Contact: bryangarayacademico@gmail.com
 
-## PRoject created with create vite@latest
+## Project created with create vite@latest
 https://vitejs.dev/guide/
