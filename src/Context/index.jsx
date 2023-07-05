@@ -1,9 +1,12 @@
 import { createContext, useEffect, useState } from 'react'
 import apiUrl from '../API';
+import AuthLocalStorage from './AuthLocalStorage';
 
 export const ShoppingCartContext = createContext();
 
 export const ShoppingCartProvider = ({children}) => {
+
+    const { account, setAccount, signOut, setSignOut } = AuthLocalStorage(); 
     
     // Show Navbar
     const [showNavBar, setShowNavBar] = useState(true);
@@ -100,6 +103,10 @@ export const ShoppingCartProvider = ({children}) => {
     return (
         <ShoppingCartContext.Provider
             value ={{
+                account,
+                setAccount,
+                signOut,
+                setSignOut,
                 showNavBar,
                 setShowNavBar,
                 loading,

@@ -1,6 +1,7 @@
 import { BrowserRouter, useRoutes } from 'react-router-dom';
 import { ShoppingCartProvider } from '../../Context';
 import Home from '../Home';
+import SignIn from '../SignIn';
 import MyOrder from '../MyOrder';
 import MyOrders from '../MyOrders';
 import NotFound from '../NotFound';
@@ -17,6 +18,7 @@ const AppRoutes = () => {
     { path: '/Equatorial', element: <Home /> },
     { path: '/Dobsonian', element: <Home /> },
     { path: '/Accessories', element: <Home /> },
+    { path: '/sign-in', element: <SignIn/>},
     { path: '/my-order', element: <MyOrder /> },
     { path: '/my-orders', element: <MyOrders /> },
     { path: '/my-orders/:id', element: <MyOrder /> },

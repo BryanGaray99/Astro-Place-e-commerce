@@ -7,6 +7,8 @@ import './styles.css';
 
 const Navbar = () => {
   const {
+    signOut,
+    setSignOut,
     showNavBar,
     setShowNavBar,
     isNewOrder,
@@ -36,6 +38,17 @@ const Navbar = () => {
     setShowMobileMenu(false);
   };
 
+  // Sign-out
+  const signOutStatus = localStorage.getItem('sign-out');
+  const parsedSignOut = JSON.parse(signOutStatus);
+  const isUserSignOut = signOut || parsedSignOut;
+
+  const handleSignOut = () => {
+    const stringSignOut = JSON.stringify(true);
+    localStorage.setItem('sign-out', stringSignOut);
+    setSignOut(true);
+  }
+
   const newOrderAnimation = () => {
     if (isNewOrder) {
       return (
@@ -45,6 +58,76 @@ const Navbar = () => {
       );
     }
   };
+
+  const renderSignInView = () => {
+    if (isUserSignOut) {
+      return (
+        <li
+        className='hidden md:flex items-center cursor-pointer'
+        >
+          <NavLink
+            to='/sign-in'
+            className={({ isActive }) => 
+              isActive ? activeStyle : undefined}
+            onClick={() => handleSignOut()}
+          >
+            <div>
+              <span className='text-black'> Sign Out </span>
+            </div>
+          </NavLink>
+        </li>
+      );
+    } else {
+      return (
+        <>
+          <li
+            className='hidden md:flex items-center cursor-pointer'
+            >
+            <NavLink
+              to='/sign-in'
+              className={({ isActive }) => 
+                isActive ? activeStyle : undefined}
+              onClick={() => handleSignOut()}
+            >
+              <div>
+                <span className='text-black'> Sign Out </span>
+              </div>
+            </NavLink>
+          </li>
+          <li
+            className='hidden md:flex items-center cursor-pointer'
+            onClick={() => {
+              setIsNewOrder(false);
+              setOpenCartMenu(false);
+              closeMobileMenu();
+            }}
+            >
+            <NavLink
+              to='/my-orders'
+              className={({ isActive }) => 
+              isActive ? activeStyle : undefined}
+              onClick={closeMobileMenu}
+              >
+              <div>
+                <span className='text-black'> My Orders </span>
+                {newOrderAnimation()}
+              </div>
+            </NavLink>
+          </li>
+          <li
+            className='flex items-center cursor-pointer'
+            onClick={() => {
+              setOpenCartMenu(state => !state);
+              setShowMobileMenu(false);
+            }}
+          >
+            <ShoppingBagIcon className='h-6 w-6 text-[#6936F5]' />
+            <div> {cartProducts.length} </div>
+          </li>
+        </>
+      );
+    }
+  }
 
   return (
     <nav className={`${showNavBar ? 'flex' : 'hidden'} justify-between items-center fixed z-10 top-0 w-full h-[90px] py-5 px-2 text-sm bg-[#f7f3ff]`}>
@@ -133,36 +216,7 @@ const Navbar = () => {
         </ul>
       </div>
       <ul className='flex items-center gap-5'>
-        <li
-          className='hidden md:flex items-center cursor-pointer'
-          onClick={() => {
-            setIsNewOrder(false);
-            setOpenCartMenu(false);
-            closeMobileMenu();
-          }}
-        >
-          <NavLink
-            to='/my-orders'
-            className={({ isActive }) => 
-              isActive ? activeStyle : undefined}
-            onClick={closeMobileMenu}
-          >
-            <div>
-              <span className='text-black'> My Orders </span>
-              {newOrderAnimation()}
-            </div>
-          </NavLink>
-        </li>
-        <li
-          className='flex items-center cursor-pointer'
-          onClick={() => {
-            setOpenCartMenu(state => !state);
-            setShowMobileMenu(false);
-          }}
-        >
-          <ShoppingBagIcon className='h-6 w-6 text-[#6936F5]' />
-          <div> {cartProducts.length} </div>
-        </li>
+        {renderSignInView()}
       </ul>
       {showMobileMenu && (
         <div className='md:hidden absolute top-[86px] left-0 w-full bg-white shadow-lg py-4 px-8'>
