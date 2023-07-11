@@ -1,4 +1,4 @@
-import React, { useContext, useState} from 'react'
+import React, { useContext, useState, useRef} from 'react'
 import { Link } from 'react-router-dom';
 import Layout from '../../Components/Layout';
 import { ShoppingCartContext } from '../../Context';
@@ -7,6 +7,7 @@ const SignIn = () => {
   
   const {account} = useContext(ShoppingCartContext);
   const [view, setView] = useState('user-info');
+  const form = useRef(null)
 
   // Account
   const localAccount = localStorage.getItem('account');
@@ -17,6 +18,17 @@ const SignIn = () => {
   const noAccountInLocalState = account ? Object.keys(account).length === 0 : true;
   // To know if the user has an account 
   const hasUserAnAccount = !noAccountInLocalStorage || !noAccountInLocalState;
+
+  // Create Account
+  const createAnAccount = () => {
+    const formData = new FormData(form.current);
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      password: formData.get('password')
+    }
+    // console.log(data);
+  }
   
   const renderLogin = () => {
     return (
@@ -54,7 +66,54 @@ const SignIn = () => {
   }
 
   const renderSingUp = () => {
-    // Crear formulario de Sing Up
+    return (
+      <form ref={form} className='flex flex-col gap-4 w-80'>
+        <div className='flex flex-col gap-1'>
+          <label htmlFor='name' className='font-normal text-sm'>Your name:</label>
+          <input
+            type='text'
+            id='name'
+            name='name'
+            defaultValue={parsedAccount?.name}
+            placeholder='Awesome Person'
+            className='rounded-lg border border-[#2b0081] placeholder:font-light
+                      placeholder:text-sm placeholder:text-black/60 focus:outline-none py-2 px-4'
+          />
+        </div>
+        <div className='flex flex-col gap-1'>
+          <label htmlFor='email' className='font-normal text-sm'>Your email:</label>
+          <input
+            type='text'
+            id='email'
+            name='email'
+            defaultValue={parsedAccount?.email}
+            placeholder='awesome.person@astro.com'
+            className='rounded-lg border border-[#2b0081] placeholder:font-light
+                      placeholder:text-sm placeholder:text-black/60 focus:outline-none py-2 px-4'
+          />
+        </div>
+        <div className='flex flex-col gap-1'>
+          <label htmlFor='password' className='font-normal text-sm'>Your password:</label>
+          <input
+            type='password'
+            id='password'
+            name='password'
+            defaultValue={parsedAccount?.password}
+            placeholder='*******'
+            className='rounded-lg border border-[#2b0081] placeholder:font-light
+                      placeholder:text-sm placeholder:text-black/60 focus:outline-none py-2 px-4'
+          />
+        </div>
+        <Link to='/All'>
+          <button
+            className='bg-[#9274ce] text-white w-full rounded-lg py-3'
+            onClick={()=> createAnAccount()}
+          >
+            Create Account
+          </button>
+        </Link>
+      </form>
+    )
   }
 
   const renderView = () => view === 'create-user-info' ? renderSingUp() : renderLogin();
