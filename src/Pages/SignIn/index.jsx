@@ -1,24 +1,35 @@
 import React, { useContext, useState, useRef} from 'react'
 import { Link } from 'react-router-dom';
+import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/solid';
 import Layout from '../../Components/Layout';
 import { ShoppingCartContext } from '../../Context';
 
 const SignIn = () => {
   
-  const {account} = useContext(ShoppingCartContext);
+  const {account, setSignOut, setAccount} = useContext(ShoppingCartContext);
   const [view, setView] = useState('user-info');
-  const form = useRef(null)
+  const [showPassword, setShowPassword] = useState(false);
 
+  const form = useRef(null)
+  
   // Account
   const localAccount = localStorage.getItem('account');
   const parsedAccount = JSON.parse(localAccount);
-
+  
   // If account exist
   const noAccountInLocalStorage = parsedAccount ? Object.keys(parsedAccount).length === 0 : true;
   const noAccountInLocalState = account ? Object.keys(account).length === 0 : true;
   // To know if the user has an account 
   const hasUserAnAccount = !noAccountInLocalStorage || !noAccountInLocalState;
-
+  
+  const handleSignIn = () => {
+    const stringiedSignOut = JSON.stringify(false);
+    localStorage.setItem('sign-out', stringiedSignOut);
+    setSignOut(false);
+    // redirect 
+    return <Navigate replace to={'/All'} />
+  }
+  
   // Create Account
   const createAnAccount = () => {
     const formData = new FormData(form.current);
@@ -28,24 +39,58 @@ const SignIn = () => {
       password: formData.get('password')
     }
     // console.log(data);
+    const stringifiedAccount = JSON.stringify(data);
+    localStorage.setItem('account', stringifiedAccount)
+    setAccount(data);
+    // Sign In
+    handleSignIn();
   }
   
+  // Password Visibility
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   const renderLogin = () => {
     return (
-      <div className='flex flex-col w-80 mt-10'>
-        <p >
+      <div className='flex flex-col w-80 mt-10 gap-3'>
+        <p>
           <span className='font-normal'>Email: </span>
           <span className='font-semibold'>{parsedAccount?.email}</span>
         </p>
-        <p className='mt-2 mb-4'>
+        <p>
           <span className='font-normal'>Password: </span>
-          <span className='font-semibold'>{parsedAccount?.email}</span>
+          <span className='relative'>
+            <input
+              type={showPassword ? 'text' : 'password'}
+              className='pr-10'
+              value={parsedAccount?.password}
+              readOnly
+            />
+            <button
+              className='absolute right-0 top-1/2 transform -translate-y-1/2 bg-transparent border-none'
+              onClick={togglePasswordVisibility}
+            >
+              {showPassword ? (
+                <EyeSlashIcon
+                  className='h-5 w-5 text-gray-400 hover:text-gray-600'
+                  aria-hidden='true'
+                />
+              ) : (
+                <EyeIcon
+                  className='h-5 w-5 text-gray-400 hover:text-gray-600'
+                  aria-hidden='true'
+                />
+              )}
+            </button>
+          </span>
         </p>
         <Link
-          to="/">
+          to="/All">
           <button
             className='bg-[#d3bdff] border border-black disabled:bg-black/40 text-black  w-full rounded-lg py-3 mt-4 mb-2'
             disabled={!hasUserAnAccount}
+            onClick={()=>handleSignIn()}
           >
             Log in
           </button>
