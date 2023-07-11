@@ -71,7 +71,7 @@ const Navbar = () => {
               isActive ? activeStyle : undefined}
             onClick={() => handleSignOut()}
           >
-            <div>
+            <div className='flex w-14 items-center justify-center'>
               <span className='text-black'> Sign Out </span>
             </div>
           </NavLink>
@@ -82,14 +82,14 @@ const Navbar = () => {
         <>
           <li
             className='hidden md:flex items-center cursor-pointer'
-            >
+          >
             <NavLink
               to='/sign-in'
               className={({ isActive }) => 
                 isActive ? activeStyle : undefined}
               onClick={() => handleSignOut()}
             >
-              <div>
+              <div className='flex w-14 items-center justify-center'>
                 <span className='text-black'> Sign Out </span>
               </div>
             </NavLink>
@@ -147,6 +147,7 @@ const Navbar = () => {
               <Bars3Icon className='h-6 w-6' />
             )}
           </button>
+
         </div>
         <div 
           className='flex items-center justify-center w-full md:w-auto'
@@ -273,25 +274,41 @@ const Navbar = () => {
                 Accessories
               </NavLink>
             </li>
+            {!isUserSignOut && (
+              <li
+                  className='flex items-center cursor-pointer'
+                  onClick={() => {
+                      setIsNewOrder(false);
+                      setOpenCartMenu(false);
+                      closeMobileMenu();
+                  }}
+              >
+                <NavLink
+                    to='/my-orders'
+                    className={({ isActive }) => 
+                      isActive ? activeStyle : undefined}
+                    onClick={closeMobileMenu}
+                >
+                    <div>
+                    <span className='text-black'> My Orders </span>
+                    {newOrderAnimation()}
+                    </div>
+                </NavLink>
+              </li>
+            )}
             <li
-                className='flex items-center cursor-pointer'
-                onClick={() => {
-                    setIsNewOrder(false);
-                    setOpenCartMenu(false);
-                    closeMobileMenu();
-                }}
+            className='flex items-center cursor-pointer mt-10'
             >
-            <NavLink
-                to='/my-orders'
+              <NavLink
+                to='/sign-in'
                 className={({ isActive }) => 
                   isActive ? activeStyle : undefined}
-                onClick={closeMobileMenu}
-            >
-                <div>
-                <span className='text-black'> My Orders </span>
-                {newOrderAnimation()}
+                onClick={() => handleSignOut()}
+              >
+                <div className='flex w-14 items-center justify-center'>
+                  <span className='text-black'> Sign Out </span>
                 </div>
-            </NavLink>
+              </NavLink>
             </li>
           </ul>
         </div>
