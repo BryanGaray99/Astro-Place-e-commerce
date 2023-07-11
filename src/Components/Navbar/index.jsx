@@ -7,6 +7,7 @@ import './styles.css';
 
 const Navbar = () => {
   const {
+    account,
     signOut,
     setSignOut,
     showNavBar,
@@ -43,6 +44,16 @@ const Navbar = () => {
   const parsedSignOut = JSON.parse(signOutStatus);
   const isUserSignOut = signOut || parsedSignOut;
 
+  // Account
+  const localAccount = localStorage.getItem('account');
+  const parsedAccount = JSON.parse(localAccount);
+  // If account exist
+  const noAccountInLocalStorage = parsedAccount ? Object.keys(parsedAccount).length === 0 : true;
+  const noAccountInLocalState = account ? Object.keys(account).length === 0 : true;
+  // To know if the user has an account 
+  const hasUserAnAccount = !noAccountInLocalStorage || !noAccountInLocalState;
+  
+
   const handleSignOut = () => {
     const stringSignOut = JSON.stringify(true);
     localStorage.setItem('sign-out', stringSignOut);
@@ -60,24 +71,7 @@ const Navbar = () => {
   };
 
   const renderSignInView = () => {
-    if (isUserSignOut) {
-      return (
-        <li
-        className='hidden md:flex items-center cursor-pointer'
-        >
-          <NavLink
-            to='/sign-in'
-            className={({ isActive }) => 
-              isActive ? activeStyle : undefined}
-            onClick={() => handleSignOut()}
-          >
-            <div className='flex w-14 items-center justify-center'>
-              <span className='text-black'> Sign Out </span>
-            </div>
-          </NavLink>
-        </li>
-      );
-    } else {
+    if (hasUserAnAccount && !isUserSignOut) {
       return (
         <>
           <li
@@ -87,7 +81,10 @@ const Navbar = () => {
               to='/sign-in'
               className={({ isActive }) => 
                 isActive ? activeStyle : undefined}
-              onClick={() => handleSignOut()}
+              onClick={() => {
+                handleSignOut();
+                setShowMobileMenu(false)
+              }}
             >
               <div className='flex w-14 items-center justify-center'>
                 <span className='text-black'> Sign Out </span>
@@ -125,6 +122,26 @@ const Navbar = () => {
             <div> {cartProducts.length} </div>
           </li>
         </>
+      );
+    } else {
+      return (
+        <li
+        className='hidden md:flex items-center cursor-pointer'
+        >
+          <NavLink
+            to='/sign-in'
+            className={({ isActive }) => 
+              isActive ? activeStyle : undefined}
+            onClick={() => {
+              handleSignOut();
+              setShowMobileMenu(false)
+            }}
+          >
+            <div className='flex w-14 items-center justify-center'>
+              <span className='text-black'> Sign Out </span>
+            </div>
+          </NavLink>
+        </li>
       );
     }
   }
@@ -303,7 +320,10 @@ const Navbar = () => {
                 to='/sign-in'
                 className={({ isActive }) => 
                   isActive ? activeStyle : undefined}
-                onClick={() => handleSignOut()}
+                onClick={() => {
+                  handleSignOut();
+                  setShowMobileMenu(false)
+                }}
               >
                 <div className='flex w-14 items-center justify-center'>
                   <span className='text-black'> Sign Out </span>

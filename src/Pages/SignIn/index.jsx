@@ -1,5 +1,5 @@
 import React, { useContext, useState, useRef} from 'react'
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/solid';
 import Layout from '../../Components/Layout';
 import { ShoppingCartContext } from '../../Context';
