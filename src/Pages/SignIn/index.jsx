@@ -56,11 +56,11 @@ const SignIn = () => {
       <div className='flex flex-col w-80 mt-10 gap-3'>
         <p>
           <span className='font-normal'>Email: </span>
-          <span className='font-semibold'>{parsedAccount?.email}</span>
+          <span className='font-semibold px-2'>{parsedAccount?.email}</span>
         </p>
         <p>
           <span className='font-normal'>Password: </span>
-          <span className='relative'>
+          <span className='relative px-2'>
             <input
               type={showPassword ? 'text' : 'password'}
               className='pr-10'
@@ -95,9 +95,6 @@ const SignIn = () => {
             Log in
           </button>
         </Link>
-        <div className='text-center'>
-          <a className='text-sm hover:underline' href='/'>Forgot my password</a>
-        </div>
         <button
           className='bg-[#eae0fd] border border-black disabled:text-black/40 disabled:border-black/40
           rounded-lg mt-6 py-3'
@@ -164,7 +161,11 @@ const SignIn = () => {
   const renderView = () => view === 'create-user-info' ? renderSingUp() : renderLogin();
   return (
       <Layout>
-        <h1 className="font-medium text-xl text-center mt-[60px] mb-6 w-80">Welcome To Astro Place</h1>
+        <h1 className='font-medium text-xl text-center mt-[10px] mb-6 w-80 border-t-4 border-t-[#e5d8ff] border-solid'>
+          <div className='mt-[30px]'>
+            Welcome To Astro Place
+          </div>
+        </h1>
         {renderView()}
       </Layout>
     )

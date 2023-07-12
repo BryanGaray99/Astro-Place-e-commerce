@@ -74,13 +74,28 @@ const Navbar = () => {
     if (hasUserAnAccount && !isUserSignOut) {
       return (
         <>
-          <li
-            className='hidden md:flex items-center cursor-pointer'
-          >
+          <li  className='hidden md:flex items-center justify-center px-2'>
+            <span className='text-[#7343d4] font-normal text-medium'>
+              {isUserSignOut? `Hola`: `Hola ${parsedAccount?.name}` }
+            </span>
+          </li>
+          <li className='hidden md:flex items-center cursor-pointer'>
+            <NavLink
+              to='/my-account'
+              className={({ isActive }) => isActive ? activeStyle : undefined}
+              onClick={() => {
+                setShowMobileMenu(false)
+              }}
+            >
+              <div className='flex w-15 items-center justify-center'>
+                <span className='text-black'> My Account </span>
+              </div>
+            </NavLink>
+          </li>
+          <li className='hidden md:flex items-center cursor-pointer'>
             <NavLink
               to='/sign-in'
-              className={({ isActive }) => 
-                isActive ? activeStyle : undefined}
+              className={({ isActive }) => isActive ? activeStyle : undefined}
               onClick={() => {
                 handleSignOut();
                 setShowMobileMenu(false)
@@ -239,6 +254,11 @@ const Navbar = () => {
       {showMobileMenu && (
         <div className='md:hidden absolute top-[86px] left-0 w-full bg-white shadow-lg py-4 px-8'>
           <ul className='flex flex-col gap-4'>
+            <li className='mb-2'>
+                <span className='text-[#7343d4] font-normal text-medium'>
+                  {!isUserSignOut && `Hola ${parsedAccount?.name}` }
+                </span>
+            </li>
             <li onClick={() => setSearchByCategory(null)}>
               <NavLink
                 to='/All'
@@ -292,29 +312,43 @@ const Navbar = () => {
               </NavLink>
             </li>
             {!isUserSignOut && (
-              <li
+              <>
+                <li
                   className='flex items-center cursor-pointer'
                   onClick={() => {
-                      setIsNewOrder(false);
-                      setOpenCartMenu(false);
-                      closeMobileMenu();
+                    setIsNewOrder(false);
+                    setOpenCartMenu(false);
+                    closeMobileMenu();
                   }}
-              >
-                <NavLink
+                >
+                  <NavLink
                     to='/my-orders'
                     className={({ isActive }) => 
-                      isActive ? activeStyle : undefined}
+                    isActive ? activeStyle : undefined}
                     onClick={closeMobileMenu}
-                >
+                  >
                     <div>
-                    <span className='text-black'> My Orders </span>
-                    {newOrderAnimation()}
+                      <span className='text-black'> My Orders </span>
+                      {newOrderAnimation()}
                     </div>
-                </NavLink>
-              </li>
+                  </NavLink>
+                </li>
+                <li className='flex items-center cursor-pointer mt-10'>
+                  <NavLink
+                    to='/my-account'
+                    className={({ isActive }) => 
+                    isActive ? activeStyle : undefined}
+                    onClick={closeMobileMenu}
+                  >
+                  <div className='flex w-15 items-center justify-center'>
+                    <span className='text-black'> My Account </span>
+                  </div>
+                  </NavLink>
+                </li>
+              </>
             )}
             <li
-            className='flex items-center cursor-pointer mt-10'
+            className='flex items-center cursor-pointer'
             >
               <NavLink
                 to='/sign-in'
@@ -322,7 +356,7 @@ const Navbar = () => {
                   isActive ? activeStyle : undefined}
                 onClick={() => {
                   handleSignOut();
-                  setShowMobileMenu(false)
+                  closeMobileMenu();
                 }}
               >
                 <div className='flex w-14 items-center justify-center'>

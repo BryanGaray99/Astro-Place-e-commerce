@@ -9,6 +9,7 @@ import NotFound from '../NotFound';
 import Navbar from '../../Components/Navbar'
 import CheckoutMenu from '../../Components/CheckoutMenu';
 import LandingPage from '../LandingPage';
+import MyAccount from '../MyAccount';
 import './App.css';
 
 const AppRoutes = () => {
@@ -36,6 +37,7 @@ const AppRoutes = () => {
     { path: '/Dobsonian',  element: hasUserAnAccount && !isUserSignOut ? <Home /> : <Navigate replace to = {'/sign-in'} />},
     { path: '/Accessories',  element: hasUserAnAccount && !isUserSignOut ? <Home /> : <Navigate replace to = {'/sign-in'} /> },
     { path: '/sign-in', element: <SignIn/>},
+    { path: '/my-account', element: hasUserAnAccount && !isUserSignOut ? <MyAccount /> : <Navigate replace to = {'/sign-in'} />},
     { path: '/my-order',  element: hasUserAnAccount && !isUserSignOut ? <MyOrder /> : <Navigate replace to = {'/sign-in'} /> },
     { path: '/my-orders', element: hasUserAnAccount && !isUserSignOut ? <MyOrders /> : <Navigate replace to = {'/sign-in'} />  },
     { path: '/my-orders/:id', element: hasUserAnAccount && !isUserSignOut ? <MyOrder /> : <Navigate replace to = {'/sign-in'} /> },

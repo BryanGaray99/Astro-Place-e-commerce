@@ -59,7 +59,8 @@ const LandingPage = () => {
           <p className="relative top-[20vh] text-lg">
           Here is the final project of the "React.js con Vite.js y Tailwind CSS" course from Platzi. 
           My goal with the course was to put into practice web development skills and create an interactive, 
-          responsive and customized e-commerce with my own style. I hope you like it!
+          responsive and customized e-commerce with my own style. 
+          <br/>I hope you like it!
           </p>
         </div>
         
