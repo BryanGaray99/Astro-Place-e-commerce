@@ -18,7 +18,8 @@ const Navbar = () => {
     setIsNewOrder,
     setSearchByCategory,
     showMobileMenu,
-    setShowMobileMenu
+    setShowMobileMenu,
+    setOpenVisitors
   } = useContext(ShoppingCartContext);
 
   // const currentPath = window.location.pathname;
@@ -85,6 +86,7 @@ const Navbar = () => {
               className={({ isActive }) => isActive ? activeStyle : undefined}
               onClick={() => {
                 setShowMobileMenu(false)
+                setOpenVisitors(false)
               }}
             >
               <div className='flex w-15 items-center justify-center'>
@@ -99,6 +101,7 @@ const Navbar = () => {
               onClick={() => {
                 handleSignOut();
                 setShowMobileMenu(false)
+                setOpenVisitors(false)
               }}
             >
               <div className='flex w-14 items-center justify-center'>
@@ -111,6 +114,7 @@ const Navbar = () => {
             onClick={() => {
               setIsNewOrder(false);
               setOpenCartMenu(false);
+              setOpenVisitors(false)
               closeMobileMenu();
             }}
             >
@@ -131,6 +135,7 @@ const Navbar = () => {
             onClick={() => {
               setOpenCartMenu(state => !state);
               setShowMobileMenu(false);
+              setOpenVisitors(false);
             }}
           >
             <ShoppingBagIcon className='h-6 w-6 text-[#6936F5]' />
@@ -150,6 +155,7 @@ const Navbar = () => {
             onClick={() => {
               handleSignOut();
               setShowMobileMenu(false)
+              setOpenVisitors(false)
             }}
           >
             <div className='flex w-14 items-center justify-center'>
@@ -170,6 +176,7 @@ const Navbar = () => {
             onClick={() => {
               toggleMobileMenu();
               setOpenCartMenu(false);
+              setOpenVisitors(false)
             }}            
             aria-label='Toggle Menu'
           >
@@ -183,7 +190,10 @@ const Navbar = () => {
         </div>
         <div 
           className='flex items-center justify-center w-full md:w-auto'
-          onClick={() => (setOpenCartMenu(false))}
+          onClick={() => {
+            setOpenCartMenu(false)
+            setOpenVisitors(false) 
+          }}
         >
           <NavLink to='/' className='flex-shrink-0'>
             <img src={logoBlack} className='h-14 w-auto' alt='Logo' />
@@ -194,6 +204,7 @@ const Navbar = () => {
             onClick={() => {
               closeMobileMenu();
               setSearchByCategory(null)
+              setOpenVisitors(false)
             }} 
           >
             <NavLink
@@ -205,7 +216,11 @@ const Navbar = () => {
               All
             </NavLink>
           </li>
-          <li onClick={() => setSearchByCategory('Altazimuth')}>
+          <li onClick={() => {
+            setSearchByCategory('Altazimuth')
+            setOpenVisitors(false) 
+            }}
+          >
             <NavLink
               to='/Altazimuth'
               className={({ isActive }) => 
@@ -215,7 +230,11 @@ const Navbar = () => {
               Altazimuth
             </NavLink>
           </li>
-          <li onClick={() => setSearchByCategory('Equatorial')}>
+          <li onClick={() => {
+            setSearchByCategory('Equatorial')
+            setOpenVisitors(false)
+            }}
+          >
             <NavLink
               to='/Equatorial'
               className={({ isActive }) => 
@@ -225,7 +244,11 @@ const Navbar = () => {
               Equatorial
             </NavLink>
           </li>
-          <li onClick={() => setSearchByCategory('Dobsonian')}>
+          <li onClick={() => {
+            setSearchByCategory('Dobsonian')
+            setOpenVisitors(false)  
+            }}
+          >
             <NavLink
               to='/Dobsonian'
               className={({ isActive }) => 
@@ -235,7 +258,11 @@ const Navbar = () => {
               Dobsonian
             </NavLink>
           </li>
-          <li onClick={() => setSearchByCategory('Accessories')}>
+          <li onClick={() => {
+            setSearchByCategory('Accessories')
+            setOpenVisitors(false)
+            }}
+          >
             <NavLink
               to='/Accessories'
               className={({ isActive }) => 
@@ -259,7 +286,11 @@ const Navbar = () => {
                   {!isUserSignOut && `Hola ${parsedAccount?.name}` }
                 </span>
             </li>
-            <li onClick={() => setSearchByCategory(null)}>
+            <li onClick={() => {
+              setSearchByCategory(null)
+              setOpenVisitors(false)
+              }}
+            >
               <NavLink
                 to='/All'
                 className={({ isActive }) => 
@@ -271,7 +302,11 @@ const Navbar = () => {
                 All
               </NavLink>
             </li>
-            <li onClick={() => setSearchByCategory('Altazimuth')}>
+            <li onClick={() => {
+              setSearchByCategory('Altazimuth')
+              setOpenVisitors(false)
+            }}
+            >
               <NavLink
                 to='/Altazimuth'
                 className={({ isActive }) => 
@@ -281,7 +316,11 @@ const Navbar = () => {
                 Altazimuth
               </NavLink>
             </li>
-            <li onClick={() => setSearchByCategory('Equatorial')}>
+            <li onClick={() => {
+              setSearchByCategory('Equatorial')
+              setOpenVisitors(false)
+              }}
+            >
               <NavLink
                 to='/Equatorial'
                 className={({ isActive }) => 
@@ -291,7 +330,11 @@ const Navbar = () => {
                 Equatorial
               </NavLink>
             </li>
-            <li onClick={() => setSearchByCategory('Dobsonian')}>
+            <li onClick={() => { 
+              setSearchByCategory('Dobsonian')
+              setOpenVisitors(false)
+            }}
+            >
               <NavLink
                 to='/Dobsonian'
                 className={({ isActive }) => 
@@ -301,7 +344,11 @@ const Navbar = () => {
                 Dobsonian
               </NavLink>
             </li>
-            <li onClick={() => setSearchByCategory('Accessories')}>
+            <li onClick={() => {
+              setSearchByCategory('Accessories')
+              setOpenVisitors(false)
+              }}
+            >
               <NavLink
                 to='/Accessories'
                 className={({ isActive }) => 
@@ -319,6 +366,7 @@ const Navbar = () => {
                     setIsNewOrder(false);
                     setOpenCartMenu(false);
                     closeMobileMenu();
+                    setOpenVisitors(false)
                   }}
                 >
                   <NavLink
@@ -333,7 +381,12 @@ const Navbar = () => {
                     </div>
                   </NavLink>
                 </li>
-                <li className='flex items-center cursor-pointer mt-10'>
+                <li 
+                  className='flex items-center cursor-pointer mt-10'
+                  onClick={()=> {
+                    setOpenVisitors(false)
+                  }}
+                >
                   <NavLink
                     to='/my-account'
                     className={({ isActive }) => 
@@ -348,7 +401,7 @@ const Navbar = () => {
               </>
             )}
             <li
-            className='flex items-center cursor-pointer'
+              className='flex items-center cursor-pointer'
             >
               <NavLink
                 to='/sign-in'
@@ -357,6 +410,7 @@ const Navbar = () => {
                 onClick={() => {
                   handleSignOut();
                   closeMobileMenu();
+                  setOpenVisitors(false);
                 }}
               >
                 <div className='flex w-14 items-center justify-center'>
