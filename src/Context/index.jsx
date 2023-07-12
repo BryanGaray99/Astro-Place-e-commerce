@@ -41,6 +41,10 @@ export const ShoppingCartProvider = ({children}) => {
     // Mobile Menu
     const [showMobileMenu, setShowMobileMenu] = useState(false);
 
+    // Visitors
+    const [visitors, setVisitors] = useState([]);
+    const [openVisitors, setOpenVisitors] = useState(false);
+
     // Call to API
     useEffect(() => {
       const fetchData = async () => {
@@ -100,6 +104,42 @@ export const ShoppingCartProvider = ({children}) => {
       if (!searchByTitle && !searchByCategory) setFilteredItems(filterBy(null, items, searchByTitle, searchByCategory));
     }, [items, searchByTitle, searchByCategory])
 
+    // Post Visitors
+    const addVisitor = async (visitor) => {
+      const response = await fetch(`${apiUrl}/visitors`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(visitor),
+      });
+  
+      if (response.ok) {
+        const newVisitor = await response.json();
+        setVisitors((prevVisitors) => [...prevVisitors, newVisitor]);
+      } else {
+        const error = await response.json();
+        console.error("Error adding visitor:", error);
+      }
+    };
+
+    // Get Visitors
+    const fetchVisitors = async () => {
+      const response = await fetch(`${apiUrl}/visitors`);
+      if (response.ok) {
+        const visitors = await response.json();
+        setVisitors(visitors);
+      } else {
+        const error = await response.json();
+        console.error("Error fetching visitors:", error);
+      }
+    };
+  
+    useEffect(() => {
+      fetchVisitors();
+    }, []);
+
+
     return (
         <ShoppingCartContext.Provider
             value ={{
@@ -136,7 +176,11 @@ export const ShoppingCartProvider = ({children}) => {
                 isNewOrder,
                 setIsNewOrder,
                 showMobileMenu,
-                setShowMobileMenu
+                setShowMobileMenu, 
+                visitors,
+                addVisitor,
+                openVisitors,
+                setOpenVisitors
             }}
         >
             {children}

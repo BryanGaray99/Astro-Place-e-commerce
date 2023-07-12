@@ -10,7 +10,7 @@ import Navbar from '../../Components/Navbar'
 import CheckoutMenu from '../../Components/CheckoutMenu';
 import LandingPage from '../LandingPage';
 import MyAccount from '../MyAccount';
-import './App.css';
+import Visitors from '../../Components/Visitors';
 
 const AppRoutes = () => {
   const { signOut, account } = useContext(ShoppingCartContext);
@@ -55,6 +55,7 @@ const App = () => {
         <AppRoutes />
         <Navbar />
         <CheckoutMenu />
+        <Visitors />
       </BrowserRouter>  
     </ShoppingCartProvider>
     
