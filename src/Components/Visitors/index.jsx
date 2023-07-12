@@ -3,7 +3,7 @@ import { ShoppingCartContext } from '../../Context';
 import { SparklesIcon, PaperAirplaneIcon, XMarkIcon  } from '@heroicons/react/24/solid';
 
 const Visitors = () => {
-    const { addVisitor, openVisitors, setOpenVisitors } = useContext(ShoppingCartContext);
+    const { visitors, addVisitor, openVisitors, setOpenVisitors } = useContext(ShoppingCartContext);
     const [name, setName] = useState("");
 
     const toggleOpenVisitors = () => {
@@ -61,7 +61,11 @@ const Visitors = () => {
                             <h3 className='text-lg text-[#cfcfcf]'>A Sky Full of Stars</h3>
                             </div>
                             <div className='px-4 py-2'>
-                            {/* Aquí puedes mostrar los nombres */}
+                            <ul>
+                                {visitors.map((visitor, index) => (
+                                    <li key={index}>{visitor.name}</li>
+                                ))}
+                            </ul>
                             </div>
                         </div>
                     </div>
