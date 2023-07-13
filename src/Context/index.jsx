@@ -11,7 +11,7 @@ export const ShoppingCartProvider = ({children}) => {
     // Show Navbar
     const [showNavBar, setShowNavBar] = useState(true);
     
-    // Loading and error
+    // Loading and error products
     const [ loading, setLoading] = useState(true);
     const [ error, setError] = useState(false);
     const [isFetching, setIsFetching] = useState(true);
@@ -45,7 +45,7 @@ export const ShoppingCartProvider = ({children}) => {
     const [visitors, setVisitors] = useState([]);
     const [openVisitors, setOpenVisitors] = useState(false);
 
-    // Call to API
+    // GET products (items)
     useEffect(() => {
       const fetchData = async () => {
         try {
@@ -104,7 +104,7 @@ export const ShoppingCartProvider = ({children}) => {
       if (!searchByTitle && !searchByCategory) setFilteredItems(filterBy(null, items, searchByTitle, searchByCategory));
     }, [items, searchByTitle, searchByCategory])
 
-    // Post Visitors
+    // POST Visitors
     const addVisitor = async (visitor) => {
       const response = await fetch(`${apiUrl}/visitors`, {
         method: "POST",
@@ -123,21 +123,31 @@ export const ShoppingCartProvider = ({children}) => {
       }
     };
 
-    // Get Visitors
-    const fetchVisitors = async () => {
-      const response = await fetch(`${apiUrl}/visitors`);
-      if (response.ok) {
-        const visitors = await response.json();
-        setVisitors(visitors);
-      } else {
-        const error = await response.json();
-        console.error("Error fetching visitors:", error);
-      }
-    };
-  
+    // GET Visitors
     useEffect(() => {
+      const fetchVisitors = async () => {
+        try {
+          const response = await fetch(`${apiUrl}/visitors`);
+          const visitorsData = await response.json();
+          setVisitors(visitorsData);
+        } catch (error) {
+          console.error(`Error inesperado: ${error}`)
+          setFetchError(error.message);
+        } finally {
+          setIsFetching(false);
+        }
+      };
+    
       fetchVisitors();
+      const interval = setInterval(fetchVisitors, 5000);
+      return () => clearInterval(interval);
     }, []);
+
+    useEffect(() => {
+      if (visitors) {
+        setLoading(false);
+      }
+    }, [visitors]);
 
     // Orders in Local Storage
     useState(() => {
