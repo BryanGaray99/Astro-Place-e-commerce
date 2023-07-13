@@ -21,7 +21,7 @@ Link: <a href="https://astro-place-bg.netlify.app/" target="_blank" rel="noopene
 </p>
 <br/>
 <p align="center">
-  <img src="/src/Assets/astroplace-mobile.jpeg" alt="Preview.png" style="width: 50%; height: auto;">
+  <img src="/src/Assets/mobile2.png" alt="Preview.png" style="width: 50%; height: auto;">
   <p align="center">Mobile view</p>
 </p>
 
