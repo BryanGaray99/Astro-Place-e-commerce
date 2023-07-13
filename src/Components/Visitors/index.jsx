@@ -36,7 +36,7 @@ const Visitors = () => {
               <button className="relative left-[95%] text-white hover:text-gray-300" onClick={toggleOpenVisitors}>
                 <XMarkIcon className="w-6 h-6" />
               </button>
-              <h2 className="text-xl font-bold text-white flex-grow text-center">Be Part of the Stars</h2>
+              <h2 className="text-xl font-bold text-white flex-grow text-center">Be Part of the Stars ✨  </h2>
             </div>
 
             {/* Form */}
@@ -61,9 +61,9 @@ const Visitors = () => {
               <ul className='animation'>
                   {visitors.map((visitor, index) => (
                       <li key={index} className='flex items-center justify-between mb-2'>
-                        <span><SparklesIcon className="h-4 w-4 text-white" /></span>
-                        <span className='text-white px-4'>{visitor?.name}</span>
-                        <span><SparklesIcon className="h-4 w-4 text-white" /></span>
+                        <span><SparklesIcon className="h-4 w-4 text-amber-400" /></span>
+                        <span className='text-white font-medium px-4'>{visitor?.name}</span>
+                        <span><SparklesIcon className="h-4 w-4 text-amber-400" /></span>
                       </li>
                   ))}
               </ul>
