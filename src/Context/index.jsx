@@ -139,6 +139,27 @@ export const ShoppingCartProvider = ({children}) => {
       fetchVisitors();
     }, []);
 
+    // Orders in Local Storage
+    useState(() => {
+      const savedOrder = localStorage.getItem("order");
+      if (savedOrder) {
+        setOrder(JSON.parse(savedOrder));
+      }
+    }, []);
+
+    // Add order and save in local storage
+    const addOrder = (newOrder) => {
+      const updatedOrder = [...order, newOrder];
+      setOrder(updatedOrder);
+      localStorage.setItem("order", JSON.stringify(updatedOrder));
+    };
+
+    // Delete order
+    const removeOrder = (index) => {
+      const updatedOrder = order.filter((_, i) => i !== index);
+      setOrder(updatedOrder);
+      localStorage.setItem("order", JSON.stringify(updatedOrder));
+    };
 
     return (
         <ShoppingCartContext.Provider
@@ -171,6 +192,8 @@ export const ShoppingCartProvider = ({children}) => {
                 setOpenCartMenu,
                 order,
                 setOrder,
+                addOrder,
+                removeOrder,
                 cartChecked,
                 setCartChecked,
                 isNewOrder,

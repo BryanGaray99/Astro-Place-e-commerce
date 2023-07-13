@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronLeftIcon } from '@heroicons/react/24/solid'
+import { ChevronLeftIcon } from '@heroicons/react/24/solid';
 import Layout from '../../Components/Layout';
 import { ShoppingCartContext } from '../../Context';
 import MyOrderCard from '../../Components/MyOrderCard';

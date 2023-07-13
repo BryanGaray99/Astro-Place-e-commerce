@@ -1,11 +1,16 @@
 import React, {useContext} from 'react';
 import { Link } from 'react-router-dom';
+import { XMarkIcon } from '@heroicons/react/24/solid'
 import Layout from '../../Components/Layout';
 import OrdersCard from '../../Components/OrdersCard';
 import { ShoppingCartContext } from '../../Context';
 
 function MyOrders() {
-  const {order, setSearchByTitle} = useContext(ShoppingCartContext);
+  const {order, removeOrder, setSearchByTitle} = useContext(ShoppingCartContext);
+
+  const handleRemoveOrder = (index) => {
+    removeOrder(index);
+  };
 
   return (
     <Layout>
@@ -15,16 +20,21 @@ function MyOrders() {
           <p className='text-lg font-medium text-center'>My Orders</p>
         </div>
         {/* Body */}
-        <div className={`${(order.length > 0 ) ? 'overflow-y-scroll' : ''} mt-4 px-2 flex-1`} onClick={setSearchByTitle(null)}>
+        <div className={`${(order.length > 3 ) ? 'overflow-y-scroll' : ''} mt-4 px-2 flex-1`} onClick={setSearchByTitle(null)}>
           {
-            order.map((order, index) => (
-              <Link key={index} to={`/my-orders/${index}`}>
-                <OrdersCard
-                  dateTime={order.dateTime}
-                  totalPrice={order.totalPrice}
-                  quantityProducts={order.quantityProducts}
-                />
-              </Link>
+            order.map((orderItem, index) => (
+              <div key={index} className='flex gap-4'>
+                <Link to={`/my-orders/${index}`}>
+                  <OrdersCard
+                    dateTime={orderItem.dateTime}
+                    totalPrice={orderItem.totalPrice}
+                    quantityProducts={orderItem.quantityProducts}
+                  />
+                </Link>
+                <button className='relative flex items-center justify-end gap-2' onClick={() => handleRemoveOrder(index)}>
+                  <XMarkIcon className='cursor-pointer text-white h-5 w-5 rounded-full bg-[#a88ce0]' />
+                </button>
+              </div>
             ))
           }
         </div>

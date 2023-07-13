@@ -13,8 +13,7 @@ const CheckoutMenu = () => {
     setOpenCartMenu, 
     cartProducts, 
     setCartProducts,
-    order, 
-    setOrder, 
+    addOrder, 
     cartChecked,
     setCartChecked,
     setIsNewOrder,
@@ -51,7 +50,7 @@ const CheckoutMenu = () => {
     }
     // console.log(dateTime())
     if(cartProducts.length > 0) {
-      setOrder([...order, orderToAdd])
+      addOrder(orderToAdd)
       setCartProducts([]);
       setCartChecked(true);
       setIsNewOrder(true);
